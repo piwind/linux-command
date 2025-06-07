@@ -17,42 +17,13 @@ jobs:
           node-version: 20
           registry-url: 'https://registry.npmjs.org'
 
-      - name: Generate Contributors Images
-        uses: jaywcjlove/github-action-contributors@main
-        id: contributors
-        with:
-          filter-author: (renovate\[bot\]|renovate-bot|@github-actions-bot|dependabot\[bot\])
-          avatarSize: 42
-
-      - name: Modify README.md
-        uses: jaywcjlove/github-action-modify-file-content@main
-        with:
-          path: README.md
-          trim_whitespace: false
-          openDelimiter: '<!--AUTO_GENERATED_PLEASE_DONT_DELETE_IT-->'
-          closeDelimiter: '<!--AUTO_GENERATED_PLEASE_DONT_DELETE_IT-END-->'
-          body: |
-            ${{steps.contributors.outputs.htmlList}}
-
-      - name: Modify contributors.ejs
-        uses: jaywcjlove/github-action-modify-file-content@main
-        with:
-          path: template/contributors.ejs
-          trim_whitespace: false
-          openDelimiter: '<!--AUTO_GENERATED_PLEASE_DONT_DELETE_IT-->'
-          closeDelimiter: '<!--AUTO_GENERATED_PLEASE_DONT_DELETE_IT-END-->'
-          body: |
-            ${{steps.contributors.outputs.htmlList}}
-
       - run: npm install
       - run: npm run dash
-      - run: cp CONTRIBUTORS.svg .deploy
 
       - name: Build Linux Command
         run: |
           npm install
           npm run dash
-          cp CONTRIBUTORS.svg .deploy
 
       - name: Create Tag
         id: create_tag
@@ -228,3 +199,4 @@ jobs:
       #       echo "version: v${{ steps.changelog.outputs.version }}"
       #       docker tag ghcr.io/jaywcjlove/linux-command:latest ghcr.io/jaywcjlove/linux-command:${{steps.changelog.outputs.version}}
       #       docker push ghcr.io/jaywcjlove/linux-command:${{steps.changelog.outputs.version}}
+
