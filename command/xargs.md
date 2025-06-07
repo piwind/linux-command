@@ -147,12 +147,12 @@ find . -type f -name "*.jpg" -print | xargs tar -czvf images.tar.gz
     one
     two
     three
-
+    
     cat foo.txt | xargs -I % sh -c 'echo %; mkdir %'
     one
     two
     three
-
+    
     ls
     one two three
 
@@ -201,4 +201,3 @@ COMMAND7
 
 - <https://shapeshed.com/unix-xargs/>
 
-<!-- Linux 命令行搜索引擎：https://jaywcjlove.github.io/linux-command/ -->

@@ -25,7 +25,7 @@ Git迅速成为最流行的分布式版本控制系统，尤其是2008年，GitH
 
 历史就是这么偶然，如果不是当年BitMover公司威胁Linux社区，可能现在我们就没有免费而超级好用的Git了。
 
-[Git常用命令清单](https://github.com/jaywcjlove/handbook/blob/master/other/Git%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%B8%85%E5%8D%95.md)
+[Git常用命令清单](https://github.com/jaywcjlove/git-tips)
 
 ### 语法
 

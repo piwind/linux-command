@@ -65,8 +65,8 @@ declare 返回true除非你提供了非法选项或赋值错误。具体导致�
 ## 例子
 
 ```shell
-# 声明变量，当然也欢迎您在这个网站（感谢本项目发起人 @jaywcjlove）查询linux命令。
-declare reference_website='https://wangchujiang.com/linux-command/'
+# 声明变量
+declare reference_website='https://www.piwind.com/apps/linux-command/'
 
 # 显示所有包含整型属性的变量和值。
 declare -i
@@ -209,5 +209,4 @@ declare -F func_a func_b
 2. 导出属性的相关介绍请查看'export'命令。
 3. 只读属性的相关介绍请查看'readonly'命令。
 4. 引用属性的相关介绍请查看'unset'命令的例子部分。
-
 
