@@ -20,7 +20,7 @@ jobs:
       - name: Install and Build
         run: |
           npm install
-          npm run dash
+          npm run build
 
       - name: Create Tag
         id: create_tag
@@ -31,10 +31,6 @@ jobs:
       - name: Get Tag Version
         id: tag_version
         uses: jaywcjlove/changelog-generator@main
-
-      - name: Update Dash Feed
-        run: |
-          echo "<entry><version>${{steps.create_tag.outputs.versionNumber}}</version><url>https://jaywcjlove.github.io/linux-command/linux-command.docset.tgz</url></entry>" > .deploy/linux-command-docset.xml
 
       - name: Generate Changelog
         id: changelog
@@ -48,7 +44,6 @@ jobs:
         if: steps.create_tag.outputs.successful
         with:
           allowUpdates: true
-          artifacts: '.deploy/linux-command.docset.tgz'
           draft: false
           token: ${{ secrets.GITHUB_TOKEN }}
           name: ${{ steps.create_tag.outputs.version }}
@@ -90,8 +85,6 @@ jobs:
             ```bash
             http://localhost:9665/
             ```
-
-      - run: rm -rf .deploy/linux-command.docset 
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4

@@ -6,8 +6,7 @@
   "main": "dist/data.json",
   "scripts": {
     "start": "npm run build",
-    "build": "node scripts/build.mjs",
-    "dash": "npm run build && node scripts/dash.mjs"
+    "build": "node scripts/build.mjs"
   },
   "files": [
     "command",

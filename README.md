@@ -78,7 +78,7 @@
 - [微信小程序版本](https://github.com/jaywcjlove/linux-command/issues/260)，由 [**@Matz Yang**](https://github.com/MatzYang) 提供 [#260](https://github.com/jaywcjlove/linux-command/issues/260)
 - [Chrome 插件](https://github.com/jaywcjlove/oscnews)，[下载 crx 文件安装](https://github.com/jaywcjlove/oscnews/releases) 或者通过 Chrome Web Store 下载
 - [Raycast 版本](https://www.raycast.com/jaywcjlove/linux-command)，([**#338**](https://github.com/jaywcjlove/linux-command/issues/338))
-- [Alfred 版本下载](https://github.com/jaywcjlove/linux-command/releases)，`Dash` 版本 [#91](https://github.com/jaywcjlove/linux-command/pull/91)，可配合 `alfred` 使用，[下载 .docset.tgz](https://github.com/jaywcjlove/linux-command/releases) 文件，由 [**@SHANG殇**](https://github.com/xinshangshangxin) 提供
+- [Alfred 版本下载](https://github.com/jaywcjlove/linux-command/releases)，可配合 `alfred` 使用，由 [**@SHANG殇**](https://github.com/xinshangshangxin) 提供
 - [Android 版本下载](https://github.com/Ernest-su/LinuxCmd/releases)
 - [Mac/Win/Linux](https://github.com/haloislet/linux-command)
 - [`@chenjiandongx/how`](https://github.com/chenjiandongx/how) Python 版 [#129](https://github.com/jaywcjlove/linux-command/issues/129)，由 [**@陈键冬**](https://github.com/chenjiandongx) 提供
