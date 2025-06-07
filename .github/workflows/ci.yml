@@ -25,7 +25,14 @@ jobs:
           npm run build
 
       - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          folder: .deploy
-          branch: gh-pages
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          cat .gitignore > .gitignore.backup
+          git checkout --orphan gh-pages-temp
+          git rm -rf .
+          mv .gitignore.backup .gitignore
+          cp -r .deploy/. .
+          git add -A -- . ':!.gitignore'
+          git commit -m "Deploy to GitHub Pages"
+          git push origin gh-pages-temp:gh-pages --force
