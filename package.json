@@ -6,7 +6,8 @@
   "main": "dist/data.json",
   "scripts": {
     "start": "npm run build",
-    "build": "node scripts/build.mjs"
+    "build": "node scripts/build.mjs && node scripts/sitemap.js",
+    "sitemap": "node scripts/sitemap.js"
   },
   "files": [
     "command",
@@ -26,11 +27,11 @@
     "@uiw/github-corners": "~1.5.11",
     "@wcj/dark-mode": "~1.0.14",
     "colors-cli": "~1.0.31",
-    "ejs": "~3.1.6",
     "compressing": "^1.6.2",
+    "ejs": "~3.1.6",
     "fs-extra": "~10.1.0",
+    "glob": "^11.0.2",
     "markdown-to-html-cli": "~4.0.0",
-    "sitemap-generator": "~8.5.1",
     "sqlite3": "5.1.5",
     "stylus": "~0.63.0",
     "uglify-js": "~3.19.0"
