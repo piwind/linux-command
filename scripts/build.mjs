@@ -165,7 +165,7 @@ const cssPath = path.resolve(deployDir, 'css', 'index.css');
  function createTmpToHTML(fromPath, toPath, desJson, mdPath) {
   return new Promise(async (resolve, reject) => {
     try {
-      const current_path = toPath.replace(new RegExp(`${deployDir}`), '');
+      const current_path = path.relative(deployDir, toPath).replace(/\\/g, '/');
       const tmpStr = await FS.readFile(fromPath);
       let mdPathName = '';
       let mdhtml = '';
