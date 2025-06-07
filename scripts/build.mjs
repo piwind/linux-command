@@ -22,7 +22,7 @@ const cssPath = path.resolve(deployDir, 'css', 'index.css');
     await FS.ensureDir(path.resolve(deployDir, 'css'));
     await FS.ensureDir(path.resolve(deployDir, 'c'));
     await FS.copySync(faviconPath, path.resolve(deployDir, 'img', 'favicon.ico'));
-    
+    await FS.copySync(path.resolve(process.cwd(), 'template', 'img', 'logo.svg'), path.resolve(deployDir, 'img', 'logo.svg'));
     await FS.copyFile(path.resolve(process.cwd(), 'template', 'js', 'copy-to-clipboard.js'), path.resolve(deployDir, 'js', 'copy-to-clipboard.js'));
     await FS.copyFile(path.resolve(process.cwd(), 'node_modules/@wcj/dark-mode/main.js'), path.resolve(deployDir, 'js', 'dark-mode.min.js'));
     await FS.copyFile(path.resolve(process.cwd(), 'node_modules/@uiw/github-corners/lib/index.js'), path.resolve(deployDir, 'js', 'github-corners.js'));
