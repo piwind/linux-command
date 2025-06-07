@@ -2,7 +2,7 @@
   "name": "linux-command",
   "version": "1.20.0",
   "description": "Linux Command",
-  "homepage": "https://jaywcjlove.github.io/linux-command/",
+  "homepage": "https://www.piwind.com/apps/linux-command/",
   "main": "dist/data.json",
   "scripts": {
     "start": "npm run build",
@@ -17,11 +17,10 @@
     "Linux",
     "Command"
   ],
-  "author": "kenny wang <wowohoo@qq.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jaywcjlove/linux-command.git"
+    "url": "git+https://github.com/piwind/linux-command.git"
   },
   "devDependencies": {
     "@uiw/github-corners": "~1.5.11",
