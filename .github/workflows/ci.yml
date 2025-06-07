@@ -32,13 +32,6 @@ jobs:
         id: tag_version
         uses: jaywcjlove/changelog-generator@main
 
-      - name: Generate Changelog
-        id: changelog
-        uses: jaywcjlove/changelog-generator@main
-        with:
-          filter-author: (小弟调调™)
-          filter: (^[\s]+?[R|r]elease)|(^[R|r]elease)
-
       - name: Create Release
         uses: ncipollo/release-action@v1
         if: steps.create_tag.outputs.successful
