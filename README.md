@@ -10,7 +10,7 @@
 
 ## 有关CI和部署方式
 
-- 写法1（本仓库目前用的）：
+- 写法1：
 
   ```yaml
         - name: Deploy to GitHub Pages
@@ -42,7 +42,7 @@
   git clone --branch gh-pages https://github.com/piwind/linux-command.git
   ```
 
-- 写法2：
+- 写法2（本仓库目前用的）：
 
   ```yaml
         - name: Deploy to GitHub Pages
