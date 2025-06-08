@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <meta name="description" content="wget:Linux系统下载文件工具 - 最专业的Linux命令大全，内容包含Linux命令手册、详解、学习，值得收藏的Linux命令速查手册。">
+    <meta name="keywords" content="Linux,Command,命令大全,Linux命令手册,wget,Linux系统下载文件工具">
+    <title>wget 命令，Linux wget 命令详解：Linux系统下载文件工具 -  Linux 命令搜索引擎</title>
+    <link rel="shortcut icon" href="../img/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="../css/index.css?v=1749366248289">
+    <script src="../js/dark-mode.min.js"></script>
+    <script type="module" src="../js/github-corners.js"></script>
+</head>
+<body>
+<dark-mode permanent dark="Dark" light="Light" style="position: fixed;left: 10px;top: 8px; z-index: 999;"></dark-mode>
+<github-corners target="__blank" z-index="999" position="fixed" href="https://github.com/piwind/linux-command"></github-corners>
+<div class="header header_list">
+  <div class="header_inner">
+      <div class="logo">
+          <a href="../index.html">
+            <img src="../img/logo.svg" alt="Linux Command Logo">
+          </a>
+      </div>
+      <div class="search">
+          <ul class="search-list" id="result">
+            <!-- <li><a href="#"><strong>find</strong> - 指定目录下查找文件。</a></li> -->
+          </ul>
+          <input type="text" class="query" id="query" autocomplete="off" autofocus="autofocus" placeholder="Linux 命令搜索"/>
+          <div class="enter-input">
+              <input type="hidden" id="current_path" value="/c/wget.html">
+              <button id="search_btn">搜索</button>
+          </div>
+      </div>
+  </div>
+</div>
+<script type="text/javascript" src="../js/copy-to-clipboard.js"></script>
+
+<div class="markdown-body">
+
+<span class="edit_btn">
+<a target="_blank" href="https://forum.piwind.com/">纠正错误</a> 
+<span class="split"></span>
+<a target="_blank" href="https://forum.piwind.com/">添加实例</a>
+</span>
+
+
+<dark-mode style="position: fixed; top: 8px; left: 10px; z-index: 999;;display: none;" dark="Dark" light="Light"></dark-mode><script>const t=document;const e="_dark_mode_theme_";const s="permanent";const o="colorschemechange";const i="permanentcolorscheme";const h="light";const r="dark";const n=(t,e,s=e)=>{Object.defineProperty(t,s,{enumerable:true,get(){const t=this.getAttribute(e);return t===null?"":t},set(t){this.setAttribute(e,t)}})};const c=(t,e,s=e)=>{Object.defineProperty(t,s,{enumerable:true,get(){return this.hasAttribute(e)},set(t){if(t){this.setAttribute(e,"")}else{this.removeAttribute(e)}}})};class a extends HTMLElement{static get observedAttributes(){return["mode",h,r,s]}LOCAL_NANE=e;constructor(){super();this.t()}connectedCallback(){n(this,"mode");n(this,r);n(this,h);c(this,s);const a=localStorage.getItem(e);if(a&&[h,r].includes(a)){this.mode=a;this.permanent=true}if(this.permanent&&!a){localStorage.setItem(e,this.mode)}const l=[h,r].includes(a);if(this.permanent&&a){this.o()}else{if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches){this.mode=r;this.o()}if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: light)").matches){this.mode=h;this.o()}}if(!this.permanent&&!l){window.matchMedia("(prefers-color-scheme: light)").onchange=t=>{this.mode=t.matches?h:r;this.o()};window.matchMedia("(prefers-color-scheme: dark)").onchange=t=>{this.mode=t.matches?r:h;this.o()}}const d=new MutationObserver(((s,h)=>{this.mode=t.documentElement.dataset.colorMode;if(this.permanent&&l){localStorage.setItem(e,this.mode);this.i(i,{permanent:this.permanent})}this.h();this.i(o,{colorScheme:this.mode})}));d.observe(t.documentElement,{attributes:true});this.i(o,{colorScheme:this.mode});this.h()}attributeChangedCallback(t,s,o){if(t==="mode"&&s!==o&&[h,r].includes(o)){const t=localStorage.getItem(e);if(this.mode===t){this.mode=o;this.h();this.o()}else if(this.mode&&this.mode!==t){this.h();this.o()}}else if((t===h||t===r)&&s!==o){this.h()}if(t==="permanent"&&typeof this.permanent==="boolean"){this.permanent?localStorage.setItem(e,this.mode):localStorage.removeItem(e)}}o(){t.documentElement.setAttribute("data-color-mode",this.mode)}h(){this.icon.textContent=this.mode===h?"🌒":"🌞";this.text.textContent=this.mode===h?this.getAttribute(r):this.getAttribute(h)}t(){var s=this.attachShadow({mode:"open"});this.label=t.createElement("span");this.label.setAttribute("class","wrapper");this.label.onclick=()=>{this.mode=this.mode===h?r:h;if(this.permanent){localStorage.setItem(e,this.mode)}this.o();this.h()};s.appendChild(this.label);this.icon=t.createElement("span");this.label.appendChild(this.icon);this.text=t.createElement("span");this.label.appendChild(this.text);const o=`
+[data-color-mode*='dark'], [data-color-mode*='dark'] body {
+  color-scheme: dark;
+  --color-theme-bg: #0d1117;
+  --color-theme-text: #c9d1d9;
+  background-color: var(--color-theme-bg);
+  color: var(--color-theme-text);
+}
+
+[data-color-mode*='light'], [data-color-mode*='light'] body {
+  color-scheme: light;
+  --color-theme-bg: #fff;
+  --color-theme-text: #24292f;
+  background-color: var(--color-theme-bg);
+  color: var(--color-theme-text);
+}`;const i="_dark_mode_style_";const n=t.getElementById(i);if(!n){var c=t.createElement("style");c.id=i;c.textContent=o;t.head.appendChild(c)}var a=t.createElement("style");a.textContent=`
+    .wrapper { cursor: pointer; user-select: none; position: relative; }
+    .wrapper > span + span { margin-left: .4rem; }
+    `;s.appendChild(a)}i(t,e){this.dispatchEvent(new CustomEvent(t,{bubbles:true,composed:true,detail:e}))}}customElements.define("dark-mode",a);</script><script>const __TEMPLATE__ = document.createElement('template');
+__TEMPLATE__.innerHTML = `
+<style>
+
+markdown-style h1:hover a.anchor .octicon-link:before,
+markdown-style h2:hover a.anchor .octicon-link:before,
+markdown-style h3:hover a.anchor .octicon-link:before,
+markdown-style h4:hover a.anchor .octicon-link:before,
+markdown-style h5:hover a.anchor .octicon-link:before,
+markdown-style h6:hover a.anchor .octicon-link:before {
+  width: 16px;
+  height: 16px;
+  content: ' ';
+  display: inline-block;
+  background-color: currentColor;
+  -webkit-mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' version='1.1' aria-hidden='true'><path fill-rule='evenodd' d='M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z'></path></svg>");
+  mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' version='1.1' aria-hidden='true'><path fill-rule='evenodd' d='M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z'></path></svg>");
+}
+[data-color-mode*='light'], [data-color-mode*='light'] body, markdown-style[theme*='light'] { --color-prettylights-syntax-comment: #6e7781; --color-prettylights-syntax-constant: #0550ae; --color-prettylights-syntax-entity: #8250df; --color-prettylights-syntax-storage-modifier-import: #24292f; --color-prettylights-syntax-entity-tag: #116329; --color-prettylights-syntax-keyword: #cf222e; --color-prettylights-syntax-string: #0a3069; --color-prettylights-syntax-variable: #953800; --color-prettylights-syntax-brackethighlighter-unmatched: #82071e; --color-prettylights-syntax-invalid-illegal-text: #f6f8fa; --color-prettylights-syntax-invalid-illegal-bg: #82071e; --color-prettylights-syntax-carriage-return-text: #f6f8fa; --color-prettylights-syntax-carriage-return-bg: #cf222e; --color-prettylights-syntax-string-regexp: #116329; --color-prettylights-syntax-markup-list: #3b2300; --color-prettylights-syntax-markup-heading: #0550ae; --color-prettylights-syntax-markup-italic: #24292f; --color-prettylights-syntax-markup-bold: #24292f; --color-prettylights-syntax-markup-deleted-text: #82071e; --color-prettylights-syntax-markup-deleted-bg: #FFEBE9; --color-prettylights-syntax-markup-inserted-text: #116329; --color-prettylights-syntax-markup-inserted-bg: #dafbe1; --color-prettylights-syntax-markup-changed-text: #953800; --color-prettylights-syntax-markup-changed-bg: #ffd8b5; --color-prettylights-syntax-markup-ignored-text: #eaeef2; --color-prettylights-syntax-markup-ignored-bg: #0550ae; --color-prettylights-syntax-meta-diff-range: #8250df; --color-prettylights-syntax-brackethighlighter-angle: #57606a; --color-prettylights-syntax-sublimelinter-gutter-mark: #8c959f; --color-prettylights-syntax-constant-other-reference-link: #0a3069; --color-fg-default: #24292f; --color-fg-muted: #57606a; --color-fg-subtle: #6e7781; --color-canvas-default: #ffffff; --color-canvas-subtle: #f6f8fa; --color-border-default: #d0d7de; --color-border-muted: hsla(210,18%,87%,1); --color-neutral-muted: rgba(175,184,193,0.2); --color-accent-fg: #0969da; --color-accent-emphasis: #0969da; --color-attention-subtle: #fff8c5; --color-danger-fg: #cf222e; } [data-color-mode*='dark'], [data-color-mode*='dark'] body, markdown-style[theme*='dark'] { --color-prettylights-syntax-comment: #8b949e; --color-prettylights-syntax-constant: #79c0ff; --color-prettylights-syntax-entity: #d2a8ff; --color-prettylights-syntax-storage-modifier-import: #c9d1d9; --color-prettylights-syntax-entity-tag: #7ee787; --color-prettylights-syntax-keyword: #ff7b72; --color-prettylights-syntax-string: #a5d6ff; --color-prettylights-syntax-variable: #ffa657; --color-prettylights-syntax-brackethighlighter-unmatched: #f85149; --color-prettylights-syntax-invalid-illegal-text: #f0f6fc; --color-prettylights-syntax-invalid-illegal-bg: #8e1519; --color-prettylights-syntax-carriage-return-text: #f0f6fc; --color-prettylights-syntax-carriage-return-bg: #b62324; --color-prettylights-syntax-string-regexp: #7ee787; --color-prettylights-syntax-markup-list: #f2cc60; --color-prettylights-syntax-markup-heading: #1f6feb; --color-prettylights-syntax-markup-italic: #c9d1d9; --color-prettylights-syntax-markup-bold: #c9d1d9; --color-prettylights-syntax-markup-deleted-text: #ffdcd7; --color-prettylights-syntax-markup-deleted-bg: #67060c; --color-prettylights-syntax-markup-inserted-text: #aff5b4; --color-prettylights-syntax-markup-inserted-bg: #033a16; --color-prettylights-syntax-markup-changed-text: #ffdfb6; --color-prettylights-syntax-markup-changed-bg: #5a1e02; --color-prettylights-syntax-markup-ignored-text: #c9d1d9; --color-prettylights-syntax-markup-ignored-bg: #1158c7; --color-prettylights-syntax-meta-diff-range: #d2a8ff; --color-prettylights-syntax-brackethighlighter-angle: #8b949e; --color-prettylights-syntax-sublimelinter-gutter-mark: #484f58; --color-prettylights-syntax-constant-other-reference-link: #a5d6ff; --color-fg-default: #c9d1d9; --color-fg-muted: #8b949e; --color-fg-subtle: #484f58; --color-canvas-default: #0d1117; --color-canvas-subtle: #161b22; --color-border-default: #30363d; --color-border-muted: #21262d; --color-neutral-muted: rgba(110,118,129,0.4); --color-accent-fg: #58a6ff; --color-accent-emphasis: #1f6feb; --color-attention-subtle: rgba(187,128,9,0.15); --color-danger-fg: #f85149; } markdown-style { display: block; -webkit-text-size-adjust: 100%; font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji"; font-size: 16px; line-height: 1.5; word-wrap: break-word; color: var(--color-fg-default); background-color: var(--color-canvas-default); } markdown-style details, markdown-style figcaption, markdown-style figure { display: block; } markdown-style summary { display: list-item; } markdown-style [hidden] { display: none !important; } markdown-style a { background-color: transparent; color: var(--color-accent-fg); text-decoration: none; } markdown-style a:active, markdown-style a:hover { outline-width: 0; } markdown-style abbr[title] { border-bottom: none; text-decoration: underline dotted; } markdown-style b, markdown-style strong { font-weight: 600; } markdown-style dfn { font-style: italic; } markdown-style h1 { margin: .67em 0; font-weight: 600; padding-bottom: .3em; font-size: 2em; border-bottom: 1px solid var(--color-border-muted); } markdown-style mark { background-color: var(--color-attention-subtle); color: var(--color-text-primary); } markdown-style small { font-size: 90%; } markdown-style sub, markdown-style sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; } markdown-style sub { bottom: -0.25em; } markdown-style sup { top: -0.5em; } markdown-style img { border-style: none; max-width: 100%; box-sizing: content-box; background-color: var(--color-canvas-default); } markdown-style code, markdown-style kbd, markdown-style pre, markdown-style samp { font-family: monospace,monospace; font-size: 1em; } markdown-style figure { margin: 1em 40px; } markdown-style hr { box-sizing: content-box; overflow: hidden; background: transparent; border-bottom: 1px solid var(--color-border-muted); height: .25em; padding: 0; margin: 24px 0; background-color: var(--color-border-default); border: 0; } markdown-style input { font: inherit; margin: 0; overflow: visible; font-family: inherit; font-size: inherit; line-height: inherit; } markdown-style [type=button], markdown-style [type=reset], markdown-style [type=submit] { -webkit-appearance: button; } markdown-style [type=button]::-moz-focus-inner, markdown-style [type=reset]::-moz-focus-inner, markdown-style [type=submit]::-moz-focus-inner { border-style: none; padding: 0; } markdown-style [type=button]:-moz-focusring, markdown-style [type=reset]:-moz-focusring, markdown-style [type=submit]:-moz-focusring { outline: 1px dotted ButtonText; } markdown-style [type=checkbox], markdown-style [type=radio] { box-sizing: border-box; padding: 0; } markdown-style [type=number]::-webkit-inner-spin-button, markdown-style [type=number]::-webkit-outer-spin-button { height: auto; } markdown-style [type=search] { -webkit-appearance: textfield; outline-offset: -2px; } markdown-style [type=search]::-webkit-search-cancel-button, markdown-style [type=search]::-webkit-search-decoration { -webkit-appearance: none; } markdown-style ::-webkit-input-placeholder { color: inherit; opacity: .54; } markdown-style ::-webkit-file-upload-button { -webkit-appearance: button; font: inherit; } markdown-style a:hover { text-decoration: underline; } markdown-style hr::before { display: table; content: ""; } markdown-style hr::after { display: table; clear: both; content: ""; } markdown-style table { border-spacing: 0; border-collapse: collapse; display: block; width: max-content; max-width: 100%; overflow: auto; } markdown-style td, markdown-style th { padding: 0; } markdown-style details summary { cursor: pointer; } markdown-style details:not([open])>*:not(summary) { display: none !important; } markdown-style kbd { display: inline-block; padding: 3px 5px; font: 11px ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace; line-height: 10px; color: var(--color-fg-default); vertical-align: middle; background-color: var(--color-canvas-subtle); border: solid 1px var(--color-neutral-muted); border-bottom-color: var(--color-neutral-muted); border-radius: 6px; box-shadow: inset 0 -1px 0 var(--color-neutral-muted); } markdown-style h1, markdown-style h2, markdown-style h3, markdown-style h4, markdown-style h5, markdown-style h6 { margin-top: 24px; margin-bottom: 16px; font-weight: 600; line-height: 1.25; } markdown-style h2 { font-weight: 600; padding-bottom: .3em; font-size: 1.5em; border-bottom: 1px solid var(--color-border-muted); } markdown-style h3 { font-weight: 600; font-size: 1.25em; } markdown-style h4 { font-weight: 600; font-size: 1em; } markdown-style h5 { font-weight: 600; font-size: .875em; } markdown-style h6 { font-weight: 600; font-size: .85em; color: var(--color-fg-muted); } markdown-style p { margin-top: 0; margin-bottom: 10px; } markdown-style blockquote { margin: 0; padding: 0 1em; color: var(--color-fg-muted); border-left: .25em solid var(--color-border-default); } markdown-style ul, markdown-style ol { margin-top: 0; margin-bottom: 0; padding-left: 2em; } markdown-style ol ol, markdown-style ul ol { list-style-type: lower-roman; } markdown-style ul ul ol, markdown-style ul ol ol, markdown-style ol ul ol, markdown-style ol ol ol { list-style-type: lower-alpha; } markdown-style dd { margin-left: 0; } markdown-style tt, markdown-style code { font-family: ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace; font-size: 12px; } markdown-style pre { margin-top: 0; margin-bottom: 0; font-family: ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace; font-size: 12px; word-wrap: normal; } markdown-style .octicon { display: inline-block; overflow: visible !important; vertical-align: text-bottom; fill: currentColor; } markdown-style ::placeholder { color: var(--color-fg-subtle); opacity: 1; } markdown-style input::-webkit-outer-spin-button, markdown-style input::-webkit-inner-spin-button { margin: 0; -webkit-appearance: none; appearance: none; }
+markdown-style .token.comment, markdown-style .token.prolog, markdown-style .token.doctype, markdown-style .token.cdata { color: var(--color-prettylights-syntax-comment); } markdown-style .token.namespace { opacity: 0.7; } markdown-style .token.tag, markdown-style .token.selector, markdown-style .token.constant, markdown-style .token.symbol, markdown-style .token.deleted { color: var(--color-prettylights-syntax-entity-tag); } markdown-style .token.maybe-class-name { color: var(--color-prettylights-syntax-variable); } markdown-style .token.property-access, markdown-style .token.operator, markdown-style .token.boolean, markdown-style .token.number, markdown-style .token.selector markdown-style .token.class, markdown-style .token.attr-name, markdown-style .token.string, markdown-style .token.char, markdown-style .token.builtin { color: var(--color-prettylights-syntax-constant); } markdown-style .token.deleted { color: var(--color-prettylights-syntax-markup-deleted-text); } markdown-style .token.property { color: var(--color-prettylights-syntax-constant); } markdown-style .token.punctuation { color: var(--color-prettylights-syntax-markup-bold); } markdown-style .token.function { color: var(--color-prettylights-syntax-entity); } markdown-style .code-line .token.deleted { background-color: var(--color-prettylights-syntax-markup-deleted-bg); } markdown-style .token.inserted { color: var(--color-prettylights-syntax-markup-inserted-text); } markdown-style .code-line .token.inserted { background-color: var(--color-prettylights-syntax-markup-inserted-bg); } markdown-style .token.variable { color: var(--color-prettylights-syntax-constant); } markdown-style .token.entity, markdown-style .token.url, .language-css markdown-style .token.string, .style markdown-style .token.string { color: var(--color-prettylights-syntax-string); } markdown-style .token.color, markdown-style .token.atrule, markdown-style .token.attr-value, markdown-style .token.function, markdown-style .token.class-name { color: var(--color-prettylights-syntax-string); } markdown-style .token.rule, markdown-style .token.regex, markdown-style .token.important, markdown-style .token.keyword { color: var(--color-prettylights-syntax-keyword); } markdown-style .token.coord { color: var(--color-prettylights-syntax-meta-diff-range); } markdown-style .token.important, markdown-style .token.bold { font-weight: bold; } markdown-style .token.italic { font-style: italic; } markdown-style .token.entity { cursor: help; }
+markdown-style [data-catalyst] { display: block; } markdown-style g-emoji { font-family: "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"; font-size: 1em; font-style: normal !important; font-weight: 400; line-height: 1; vertical-align: -0.075em; } markdown-style g-emoji img { width: 1em; height: 1em; } markdown-style::before { display: table; content: ""; } markdown-style::after { display: table; clear: both; content: ""; } markdown-style>*:first-child { margin-top: 0 !important; } markdown-style>*:last-child { margin-bottom: 0 !important; } markdown-style a:not([href]) { color: inherit; text-decoration: none; } markdown-style .absent { color: var(--color-danger-fg); } markdown-style a.anchor { float: left; padding-right: 4px; margin-left: -20px; line-height: 1; } markdown-style a.anchor:focus { outline: none; } markdown-style p, markdown-style blockquote, markdown-style ul, markdown-style ol, markdown-style dl, markdown-style table, markdown-style pre, markdown-style details { margin-top: 0; margin-bottom: 16px; } markdown-style blockquote>:first-child { margin-top: 0; } markdown-style blockquote>:last-child { margin-bottom: 0; } markdown-style sup>a::before { content: "["; } markdown-style sup>a::after { content: "]"; }
+markdown-style .octicon-video { border: 1px solid #d0d7de !important; border-radius: 6px !important; display: block; } markdown-style .octicon-video summary { border-bottom: 1px solid #d0d7de !important; padding: 8px 16px !important; cursor: pointer; } markdown-style .octicon-video > video { display: block !important; max-width: 100% !important; padding: 2px; box-sizing: border-box; border-bottom-right-radius: 6px !important; border-bottom-left-radius: 6px !important; } markdown-style details.octicon-video:not([open])>*:not(summary) { display: none !important; } markdown-style details.octicon-video:not([open]) > summary { border-bottom: 0 !important; } markdown-style h1 .octicon-link, markdown-style h2 .octicon-link, markdown-style h3 .octicon-link, markdown-style h4 .octicon-link, markdown-style h5 .octicon-link, markdown-style h6 .octicon-link { color: var(--color-fg-default); vertical-align: middle; visibility: hidden; } markdown-style h1:hover .anchor, markdown-style h2:hover .anchor, markdown-style h3:hover .anchor, markdown-style h4:hover .anchor, markdown-style h5:hover .anchor, markdown-style h6:hover .anchor { text-decoration: none; } markdown-style h1:hover .anchor .octicon-link, markdown-style h2:hover .anchor .octicon-link, markdown-style h3:hover .anchor .octicon-link, markdown-style h4:hover .anchor .octicon-link, markdown-style h5:hover .anchor .octicon-link, markdown-style h6:hover .anchor .octicon-link { visibility: visible; } markdown-style h1 tt, markdown-style h1 code, markdown-style h2 tt, markdown-style h2 code, markdown-style h3 tt, markdown-style h3 code, markdown-style h4 tt, markdown-style h4 code, markdown-style h5 tt, markdown-style h5 code, markdown-style h6 tt, markdown-style h6 code { padding: 0 .2em; font-size: inherit; } markdown-style ul.no-list, markdown-style ol.no-list { padding: 0; list-style-type: none; } markdown-style ol[type="1"] { list-style-type: decimal; } markdown-style ol[type=a] { list-style-type: lower-alpha; } markdown-style ol[type=i] { list-style-type: lower-roman; } markdown-style div>ol:not([type]) { list-style-type: decimal; } markdown-style ul ul, markdown-style ul ol, markdown-style ol ol, markdown-style ol ul { margin-top: 0; margin-bottom: 0; } markdown-style li>p { margin-top: 16px; } markdown-style li+li { margin-top: .25em; } markdown-style dl { padding: 0; } markdown-style dl dt { padding: 0; margin-top: 16px; font-size: 1em; font-style: italic; font-weight: 600; } markdown-style dl dd { padding: 0 16px; margin-bottom: 16px; } markdown-style table th { font-weight: 600; } markdown-style table th, markdown-style table td { padding: 6px 13px; border: 1px solid var(--color-border-default); } markdown-style table tr { background-color: var(--color-canvas-default); border-top: 1px solid var(--color-border-muted); } markdown-style table tr:nth-child(2n) { background-color: var(--color-canvas-subtle); } markdown-style table img { background-color: transparent; vertical-align: middle; } markdown-style img[align=right] { padding-left: 20px; } markdown-style img[align=left] { padding-right: 20px; } markdown-style .emoji { max-width: none; vertical-align: text-top; background-color: transparent; } markdown-style span.frame { display: block; overflow: hidden; } markdown-style span.frame>span { display: block; float: left; width: auto; padding: 7px; margin: 13px 0 0; overflow: hidden; border: 1px solid var(--color-border-default); } markdown-style span.frame span img { display: block; float: left; } markdown-style span.frame span span { display: block; padding: 5px 0 0; clear: both; color: var(--color-fg-default); } markdown-style span.align-center { display: block; overflow: hidden; clear: both; } markdown-style span.align-center>span { display: block; margin: 13px auto 0; overflow: hidden; text-align: center; } markdown-style span.align-center span img { margin: 0 auto; text-align: center; } markdown-style span.align-right { display: block; overflow: hidden; clear: both; } markdown-style span.align-right>span { display: block; margin: 13px 0 0; overflow: hidden; text-align: right; } markdown-style span.align-right span img { margin: 0; text-align: right; } markdown-style span.float-left { display: block; float: left; margin-right: 13px; overflow: hidden; } markdown-style span.float-left span { margin: 13px 0 0; } markdown-style span.float-right { display: block; float: right; margin-left: 13px; overflow: hidden; } markdown-style span.float-right>span { display: block; margin: 13px auto 0; overflow: hidden; text-align: right; } markdown-style code, markdown-style tt { padding: .2em .4em; margin: 0; font-size: 85%; background-color: var(--color-neutral-muted); border-radius: 6px; } markdown-style code br, markdown-style tt br { display: none; } markdown-style del code { text-decoration: inherit; } markdown-style pre code { font-size: 100%; } markdown-style pre>code { padding: 0; margin: 0; word-break: normal; white-space: pre; background: transparent; border: 0; } markdown-style pre { position: relative; font-size: 85%; line-height: 1.45; background-color: var(--color-canvas-subtle); border-radius: 6px; } markdown-style pre code, markdown-style pre tt { display: inline; max-width: auto; padding: 0; margin: 0; overflow: visible; line-height: inherit; word-wrap: normal; background-color: transparent; border: 0; } markdown-style pre > code { padding: 16px; overflow: auto; display: block; } markdown-style .csv-data td, markdown-style .csv-data th { padding: 5px; overflow: hidden; font-size: 12px; line-height: 1; text-align: left; white-space: nowrap; } markdown-style .csv-data .blob-num { padding: 10px 8px 9px; text-align: right; background: var(--color-canvas-default); border: 0; } markdown-style .csv-data tr { border-top: 0; } markdown-style .csv-data th { font-weight: 600; background: var(--color-canvas-subtle); border-top: 0; } markdown-style .footnotes { font-size: 12px; color: var(--color-fg-muted); border-top: 1px solid var(--color-border-default); } markdown-style .footnotes ol { padding-left: 16px; } markdown-style .footnotes li { position: relative; } markdown-style .footnotes li:target::before { position: absolute; top: -8px; right: -8px; bottom: -8px; left: -24px; pointer-events: none; content: ""; border: 2px solid var(--color-accent-emphasis); border-radius: 6px; } markdown-style .footnotes li:target { color: var(--color-fg-default); } markdown-style .footnotes .data-footnote-backref g-emoji { font-family: monospace; } markdown-style .task-list-item { list-style-type: none; } markdown-style .task-list-item label { font-weight: 400; } markdown-style .task-list-item.enabled label { cursor: pointer; } markdown-style .task-list-item+.task-list-item { margin-top: 3px; } markdown-style .task-list-item .handle { display: none; } markdown-style .task-list-item-checkbox, markdown-style input[type="checkbox"] { margin: 0 .2em .25em -1.6em; vertical-align: middle; } markdown-style .contains-task-list:dir(rtl) .task-list-item-checkbox, markdown-style .contains-task-list:dir(rtl) input[type="checkbox"] { margin: 0 -1.6em .25em .2em; } markdown-style ::-webkit-calendar-picker-indicator { filter: invert(50%); }
+</style>
+<slot></slot>
+`;
+class MarkdownStyle extends HTMLElement {
+    constructor() {
+        super();
+        this.shadow = this.attachShadow({ mode: 'open' });
+        this.shadow.appendChild(__TEMPLATE__.content.cloneNode(true));
+        const style = Array.prototype.slice
+            .call(this.shadow.children)
+            .find((item) => item.tagName === 'STYLE');
+        if (style) {
+            const id = '__MARKDOWN_STYLE__';
+            const findStyle = document.getElementById(id);
+            if (!findStyle) {
+                style.id = id;
+                document.head.append(style);
+            }
+        }
+    }
+    get theme() {
+        const value = this.getAttribute('theme');
+        return value === null ? '' : value;
+    }
+    set theme(name) {
+        this.setAttribute('theme', name);
+    }
+    connectedCallback() {
+        if (!this.theme) {
+            const { colorMode } = document.documentElement.dataset;
+            this.theme = colorMode;
+            const observer = new MutationObserver((mutationsList, observer) => {
+                this.theme = document.documentElement.dataset.colorMode;
+            });
+            observer.observe(document.documentElement, { attributes: true });
+            window.matchMedia('(prefers-color-scheme: light)').onchange = (event) => {
+                this.theme = event.matches ? 'light' : 'dark';
+            };
+            window.matchMedia('(prefers-color-scheme: dark)').onchange = (event) => {
+                this.theme = event.matches ? 'dark' : 'light';
+            };
+        }
+    }
+}
+customElements.define('markdown-style', MarkdownStyle);</script><markdown-style style="max-width: 960px; margin: 0 auto 60px auto; padding: 8px;" class="markdown-style">
+<h1 id="wget"><a class="anchor" aria-hidden="true" tabindex="-1" href="#wget"><span class="octicon octicon-link"></span></a>wget</h1>
+<p>Linux系统下载文件工具</p>
+<h2 id="补充说明"><a class="anchor" aria-hidden="true" tabindex="-1" href="#补充说明"><span class="octicon octicon-link"></span></a>补充说明</h2>
+<p><strong>wget命令</strong> 用来从指定的URL下载文件。wget非常稳定，它在带宽很窄的情况下和不稳定网络中有很强的适应性，如果是由于网络的原因下载失败，wget会不断的尝试，直到整个文件下载完毕。如果是服务器打断下载过程，它会再次联到服务器上从停止的地方继续下载。这对从那些限定了链接时间的服务器上下载大文件非常有用。</p>
+<p>wget支持HTTP，HTTPS和FTP协议，可以使用HTTP代理。所谓的自动下载是指，wget可以在用户退出系统的之后在后台执行。这意味这你可以登录系统，启动一个wget下载任务，然后退出系统，wget将在后台执行直到任务完成，相对于其它大部分浏览器在下载大量数据时需要用户一直的参与，这省去了极大的麻烦。</p>
+<p>用于从网络上下载资源，没有指定目录，下载资源回默认为当前目录。wget虽然功能强大，但是使用起来还是比较简单：</p>
+<ol>
+  <li><strong>支持断点下传功能</strong> 这一点，也是网络蚂蚁和FlashGet当年最大的卖点，现在，Wget也可以使用此功能，那些网络不是太好的用户可以放心了；</li>
+  <li><strong>同时支持FTP和HTTP下载方式</strong> 尽管现在大部分软件可以使用HTTP方式下载，但是，有些时候，仍然需要使用FTP方式下载软件；</li>
+  <li><strong>支持代理服务器</strong> 对安全强度很高的系统而言，一般不会将自己的系统直接暴露在互联网上，所以，支持代理是下载软件必须有的功能；</li>
+  <li><strong>设置方便简单</strong> 可能，习惯图形界面的用户已经不是太习惯命令行了，但是，命令行在设置上其实有更多的优点，最少，鼠标可以少点很多次，也不要担心是否错点鼠标；</li>
+  <li><strong>程序小，完全免费</strong> 程序小可以考虑不计，因为现在的硬盘实在太大了；完全免费就不得不考虑了，即使网络上有很多所谓的免费软件，但是，这些软件的广告却不是我们喜欢的。</li>
+</ol>
+<h3 id="语法"><a class="anchor" aria-hidden="true" tabindex="-1" href="#语法"><span class="octicon octicon-link"></span></a>语法</h3>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1"><span class="token function">wget</span> <span class="token punctuation">[</span>参数<span class="token punctuation">]</span> <span class="token punctuation">[</span>URL地址<span class="token punctuation">]</span>
+</span></code><div onclick="copied(this)" data-code="wget [参数] [URL地址]
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+<h3 id="选项"><a class="anchor" aria-hidden="true" tabindex="-1" href="#选项"><span class="octicon octicon-link"></span></a>选项</h3>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">启动参数：
+</span><span class="code-line line-number" line="2">
+</span><span class="code-line line-number" line="3">-V, –-version 显示wget的版本后退出
+</span><span class="code-line line-number" line="4">-h, –-help 打印语法帮助
+</span><span class="code-line line-number" line="5">-b, –-background 启动后转入后台执行
+</span><span class="code-line line-number" line="6">-e, –-execute<span class="token operator">=</span>COMMAND 执行 .wgetrc 格式的命令，wgetrc格式参见/etc/wgetrc或~/.wgetrc
+</span><span class="code-line line-number" line="7">
+</span><span class="code-line line-number" line="8">记录和输入文件参数：
+</span><span class="code-line line-number" line="9">
+</span><span class="code-line line-number" line="10">-o, –-output-file<span class="token operator">=</span>FILE 把记录写到FILE文件中
+</span><span class="code-line line-number" line="11">-a, –-append-output<span class="token operator">=</span>FILE 把记录追加到FILE文件中
+</span><span class="code-line line-number" line="12">-d, –-debug 打印调试输出
+</span><span class="code-line line-number" line="13">-q, –-quiet 安静模式<span class="token punctuation">(</span>没有输出<span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="14">-v, –-verbose 冗长模式<span class="token punctuation">(</span>这是缺省设置<span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="15">-nv, –-non-verbose 关掉冗长模式，但不是安静模式
+</span><span class="code-line line-number" line="16">-i, –-input-file<span class="token operator">=</span>FILE 下载在FILE文件中出现的URLs
+</span><span class="code-line line-number" line="17">-F, –-force-html 把输入文件当作HTML格式文件对待
+</span><span class="code-line line-number" line="18">-B, –-base<span class="token operator">=</span>URL 将URL作为在-F -i参数指定的文件中出现的相对链接的前缀
+</span><span class="code-line line-number" line="19">–-sslcertfile<span class="token operator">=</span>FILE 可选客户端证书
+</span><span class="code-line line-number" line="20">–-sslcertkey<span class="token operator">=</span>KEYFILE 可选客户端证书的KEYFILE
+</span><span class="code-line line-number" line="21">–-egd-file<span class="token operator">=</span>FILE 指定EGD socket的文件名
+</span><span class="code-line line-number" line="22">
+</span><span class="code-line line-number" line="23">下载参数：
+</span><span class="code-line line-number" line="24">
+</span><span class="code-line line-number" line="25">–-bind-address<span class="token operator">=</span>ADDRESS 指定本地使用地址<span class="token punctuation">(</span>主机名或IP，当本地有多个IP或名字时使用<span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="26">-t, –-tries<span class="token operator">=</span>NUMBER 设定最大尝试链接次数<span class="token punctuation">(</span><span class="token number">0</span> 表示无限制<span class="token punctuation">)</span>.
+</span><span class="code-line line-number" line="27"><span class="token parameter variable">-O</span> –-output-document<span class="token operator">=</span>FILE 把文档写到FILE文件中
+</span><span class="code-line line-number" line="28">-nc, –-no-clobber 不要覆盖存在的文件或使用.<span class="token comment">#前缀</span>
+</span><span class="code-line line-number" line="29">-c, –-continue 接着下载没下载完的文件
+</span><span class="code-line line-number" line="30">–progress<span class="token operator">=</span>TYPE 设定进程条标记
+</span><span class="code-line line-number" line="31">-N, –-timestamping 不要重新下载文件除非比本地文件新
+</span><span class="code-line line-number" line="32">-S, –-server-response 打印服务器的回应
+</span><span class="code-line line-number" line="33">–-spider 不下载任何东西
+</span><span class="code-line line-number" line="34">-T, –-timeout<span class="token operator">=</span><span class="token environment constant">SECONDS</span> 设定响应超时的秒数
+</span><span class="code-line line-number" line="35">-w, –-wait<span class="token operator">=</span><span class="token environment constant">SECONDS</span> 两次尝试之间间隔<span class="token environment constant">SECONDS</span>秒
+</span><span class="code-line line-number" line="36">–waitretry<span class="token operator">=</span><span class="token environment constant">SECONDS</span> 在重新链接之间等待1…<span class="token environment constant">SECONDS</span>秒
+</span><span class="code-line line-number" line="37">–random-wait 在下载之间等待0…2*WAIT秒
+</span><span class="code-line line-number" line="38">-Y, –-proxy<span class="token operator">=</span>on/off 打开或关闭代理
+</span><span class="code-line line-number" line="39">-Q, –-quota<span class="token operator">=</span>NUMBER 设置下载的容量限制
+</span><span class="code-line line-number" line="40">-–limit-rate<span class="token operator">=</span>RATE 限定下载输率
+</span><span class="code-line line-number" line="41">
+</span><span class="code-line line-number" line="42">目录参数：
+</span><span class="code-line line-number" line="43">
+</span><span class="code-line line-number" line="44"><span class="token parameter variable">-nd</span> –-no-directories 不创建目录
+</span><span class="code-line line-number" line="45">-x, –-force-directories 强制创建目录
+</span><span class="code-line line-number" line="46">-nH, –-no-host-directories 不创建主机目录
+</span><span class="code-line line-number" line="47">-P, –-directory-prefix<span class="token operator">=</span>PREFIX 将文件保存到目录 PREFIX/…
+</span><span class="code-line line-number" line="48">–cut-dirs<span class="token operator">=</span>NUMBER 忽略 NUMBER层远程目录
+</span><span class="code-line line-number" line="49">
+</span><span class="code-line line-number" line="50">HTTP 选项参数：
+</span><span class="code-line line-number" line="51">
+</span><span class="code-line line-number" line="52">-–http-user<span class="token operator">=</span><span class="token environment constant">USER</span> 设定HTTP用户名为 <span class="token environment constant">USER</span><span class="token builtin class-name">.</span>
+</span><span class="code-line line-number" line="53">-–http-passwd<span class="token operator">=</span>PASS 设定http密码为 PASS
+</span><span class="code-line line-number" line="54">-C, –-cache<span class="token operator">=</span>on/off 允许/不允许服务器端的数据缓存 <span class="token punctuation">(</span>一般情况下允许<span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="55">-E, –-html-extension 将所有text/html文档以.html扩展名保存
+</span><span class="code-line line-number" line="56">-–ignore-length 忽略 Content-Length 头域
+</span><span class="code-line line-number" line="57">-–header<span class="token operator">=</span>STRING 在headers中插入字符串 STRING
+</span><span class="code-line line-number" line="58">-–proxy-user<span class="token operator">=</span><span class="token environment constant">USER</span> 设定代理的用户名为 <span class="token environment constant">USER</span>
+</span><span class="code-line line-number" line="59">-–proxy-passwd<span class="token operator">=</span>PASS 设定代理的密码为 PASS
+</span><span class="code-line line-number" line="60">-–referer<span class="token operator">=</span>URL 在HTTP请求中包含  Referer: URL 头
+</span><span class="code-line line-number" line="61">-s, –-save-headers 保存HTTP头到文件
+</span><span class="code-line line-number" line="62">-U, –-user-agent<span class="token operator">=</span>AGENT 设定代理的名称为 AGENT而不是 Wget/VERSION
+</span><span class="code-line line-number" line="63">-–no-http-keep-alive 关闭 HTTP活动链接 <span class="token punctuation">(</span>永远链接<span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="64">–-cookies<span class="token operator">=</span>off 不使用 cookies
+</span><span class="code-line line-number" line="65">–-load-cookies<span class="token operator">=</span>FILE 在开始会话前从文件 FILE中加载cookie
+</span><span class="code-line line-number" line="66">-–save-cookies<span class="token operator">=</span>FILE 在会话结束后将 cookies保存到 FILE文件中
+</span><span class="code-line line-number" line="67">
+</span><span class="code-line line-number" line="68">FTP 选项参数：
+</span><span class="code-line line-number" line="69">
+</span><span class="code-line line-number" line="70">-nr, -–dont-remove-listing 不移走 .listing 文件
+</span><span class="code-line line-number" line="71">-g, -–glob<span class="token operator">=</span>on/off 打开或关闭文件名的 globbing机制
+</span><span class="code-line line-number" line="72">-–passive-ftp 使用被动传输模式 <span class="token punctuation">(</span>缺省值<span class="token punctuation">)</span>.
+</span><span class="code-line line-number" line="73">-–active-ftp 使用主动传输模式
+</span><span class="code-line line-number" line="74">-–retr-symlinks 在递归的时候，将链接指向文件<span class="token punctuation">(</span>而不是目录<span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="75">
+</span><span class="code-line line-number" line="76">递归下载参数：
+</span><span class="code-line line-number" line="77">
+</span><span class="code-line line-number" line="78">-r, -–recursive 递归下载－－慎用<span class="token operator">!</span>
+</span><span class="code-line line-number" line="79">-l, -–level<span class="token operator">=</span>NUMBER 最大递归深度 <span class="token punctuation">(</span>inf 或 <span class="token number">0</span> 代表无穷<span class="token punctuation">)</span>
+</span><span class="code-line line-number" line="80">–-delete-after 在现在完毕后局部删除文件
+</span><span class="code-line line-number" line="81">-k, –-convert-links 转换非相对链接为相对链接
+</span><span class="code-line line-number" line="82">-K, –-backup-converted 在转换文件X之前，将之备份为 X.orig
+</span><span class="code-line line-number" line="83">-m, –-mirror 等价于 <span class="token parameter variable">-r</span> <span class="token parameter variable">-N</span> <span class="token parameter variable">-l</span> inf <span class="token parameter variable">-nr</span>
+</span><span class="code-line line-number" line="84">-p, –-page-requisites 下载显示HTML文件的所有图片
+</span><span class="code-line line-number" line="85">
+</span><span class="code-line line-number" line="86">递归下载中的包含和不包含<span class="token punctuation">(</span>accept/reject<span class="token punctuation">)</span>：
+</span><span class="code-line line-number" line="87">
+</span><span class="code-line line-number" line="88">-A, –-accept<span class="token operator">=</span>LIST 分号分隔的被接受扩展名的列表
+</span><span class="code-line line-number" line="89">-R, –-reject<span class="token operator">=</span>LIST 分号分隔的不被接受的扩展名的列表
+</span><span class="code-line line-number" line="90">-D, –-domains<span class="token operator">=</span>LIST 分号分隔的被接受域的列表
+</span><span class="code-line line-number" line="91">–-exclude-domains<span class="token operator">=</span>LIST 分号分隔的不被接受的域的列表
+</span><span class="code-line line-number" line="92">–-follow-ftp 跟踪HTML文档中的FTP链接
+</span><span class="code-line line-number" line="93">–-follow-tags<span class="token operator">=</span>LIST 分号分隔的被跟踪的HTML标签的列表
+</span><span class="code-line line-number" line="94">-G, –-ignore-tags<span class="token operator">=</span>LIST 分号分隔的被忽略的HTML标签的列表
+</span><span class="code-line line-number" line="95">-H, –-span-hosts 当递归时转到外部主机
+</span><span class="code-line line-number" line="96">-L, –-relative 仅仅跟踪相对链接
+</span><span class="code-line line-number" line="97">-I, –-include-directories<span class="token operator">=</span>LIST 允许目录的列表
+</span><span class="code-line line-number" line="98">-X, –-exclude-directories<span class="token operator">=</span>LIST 不被包含目录的列表
+</span><span class="code-line line-number" line="99">-np, –-no-parent 不要追溯到父目录
+</span><span class="code-line line-number" line="100"><span class="token function">wget</span> <span class="token parameter variable">-S</span> –-spider url 不下载只显示过程
+</span></code><div onclick="copied(this)" data-code="启动参数：
+
+-V, –-version 显示wget的版本后退出
+-h, –-help 打印语法帮助
+-b, –-background 启动后转入后台执行
+-e, –-execute=COMMAND 执行 .wgetrc 格式的命令，wgetrc格式参见/etc/wgetrc或~/.wgetrc
+
+记录和输入文件参数：
+
+-o, –-output-file=FILE 把记录写到FILE文件中
+-a, –-append-output=FILE 把记录追加到FILE文件中
+-d, –-debug 打印调试输出
+-q, –-quiet 安静模式(没有输出)
+-v, –-verbose 冗长模式(这是缺省设置)
+-nv, –-non-verbose 关掉冗长模式，但不是安静模式
+-i, –-input-file=FILE 下载在FILE文件中出现的URLs
+-F, –-force-html 把输入文件当作HTML格式文件对待
+-B, –-base=URL 将URL作为在-F -i参数指定的文件中出现的相对链接的前缀
+–-sslcertfile=FILE 可选客户端证书
+–-sslcertkey=KEYFILE 可选客户端证书的KEYFILE
+–-egd-file=FILE 指定EGD socket的文件名
+
+下载参数：
+
+–-bind-address=ADDRESS 指定本地使用地址(主机名或IP，当本地有多个IP或名字时使用)
+-t, –-tries=NUMBER 设定最大尝试链接次数(0 表示无限制).
+-O –-output-document=FILE 把文档写到FILE文件中
+-nc, –-no-clobber 不要覆盖存在的文件或使用.#前缀
+-c, –-continue 接着下载没下载完的文件
+–progress=TYPE 设定进程条标记
+-N, –-timestamping 不要重新下载文件除非比本地文件新
+-S, –-server-response 打印服务器的回应
+–-spider 不下载任何东西
+-T, –-timeout=SECONDS 设定响应超时的秒数
+-w, –-wait=SECONDS 两次尝试之间间隔SECONDS秒
+–waitretry=SECONDS 在重新链接之间等待1…SECONDS秒
+–random-wait 在下载之间等待0…2*WAIT秒
+-Y, –-proxy=on/off 打开或关闭代理
+-Q, –-quota=NUMBER 设置下载的容量限制
+-–limit-rate=RATE 限定下载输率
+
+目录参数：
+
+-nd –-no-directories 不创建目录
+-x, –-force-directories 强制创建目录
+-nH, –-no-host-directories 不创建主机目录
+-P, –-directory-prefix=PREFIX 将文件保存到目录 PREFIX/…
+–cut-dirs=NUMBER 忽略 NUMBER层远程目录
+
+HTTP 选项参数：
+
+-–http-user=USER 设定HTTP用户名为 USER.
+-–http-passwd=PASS 设定http密码为 PASS
+-C, –-cache=on/off 允许/不允许服务器端的数据缓存 (一般情况下允许)
+-E, –-html-extension 将所有text/html文档以.html扩展名保存
+-–ignore-length 忽略 Content-Length 头域
+-–header=STRING 在headers中插入字符串 STRING
+-–proxy-user=USER 设定代理的用户名为 USER
+-–proxy-passwd=PASS 设定代理的密码为 PASS
+-–referer=URL 在HTTP请求中包含  Referer: URL 头
+-s, –-save-headers 保存HTTP头到文件
+-U, –-user-agent=AGENT 设定代理的名称为 AGENT而不是 Wget/VERSION
+-–no-http-keep-alive 关闭 HTTP活动链接 (永远链接)
+–-cookies=off 不使用 cookies
+–-load-cookies=FILE 在开始会话前从文件 FILE中加载cookie
+-–save-cookies=FILE 在会话结束后将 cookies保存到 FILE文件中
+
+FTP 选项参数：
+
+-nr, -–dont-remove-listing 不移走 .listing 文件
+-g, -–glob=on/off 打开或关闭文件名的 globbing机制
+-–passive-ftp 使用被动传输模式 (缺省值).
+-–active-ftp 使用主动传输模式
+-–retr-symlinks 在递归的时候，将链接指向文件(而不是目录)
+
+递归下载参数：
+
+-r, -–recursive 递归下载－－慎用!
+-l, -–level=NUMBER 最大递归深度 (inf 或 0 代表无穷)
+–-delete-after 在现在完毕后局部删除文件
+-k, –-convert-links 转换非相对链接为相对链接
+-K, –-backup-converted 在转换文件X之前，将之备份为 X.orig
+-m, –-mirror 等价于 -r -N -l inf -nr
+-p, –-page-requisites 下载显示HTML文件的所有图片
+
+递归下载中的包含和不包含(accept/reject)：
+
+-A, –-accept=LIST 分号分隔的被接受扩展名的列表
+-R, –-reject=LIST 分号分隔的不被接受的扩展名的列表
+-D, –-domains=LIST 分号分隔的被接受域的列表
+–-exclude-domains=LIST 分号分隔的不被接受的域的列表
+–-follow-ftp 跟踪HTML文档中的FTP链接
+–-follow-tags=LIST 分号分隔的被跟踪的HTML标签的列表
+-G, –-ignore-tags=LIST 分号分隔的被忽略的HTML标签的列表
+-H, –-span-hosts 当递归时转到外部主机
+-L, –-relative 仅仅跟踪相对链接
+-I, –-include-directories=LIST 允许目录的列表
+-X, –-exclude-directories=LIST 不被包含目录的列表
+-np, –-no-parent 不要追溯到父目录
+wget -S –-spider url 不下载只显示过程
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+<h3 id="参数"><a class="anchor" aria-hidden="true" tabindex="-1" href="#参数"><span class="octicon octicon-link"></span></a>参数</h3>
+<p>URL：下载指定的URL地址。</p>
+<h3 id="实例"><a class="anchor" aria-hidden="true" tabindex="-1" href="#实例"><span class="octicon octicon-link"></span></a>实例</h3>
+<p><strong>使用wget下载单个文件</strong></p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1"><span class="token function">wget</span> http://www.jsdig.com/testfile.zip
+</span></code><div onclick="copied(this)" data-code="wget http://www.jsdig.com/testfile.zip
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+<p>以下的例子是从网络下载一个文件并保存在当前目录，在下载的过程中会显示进度条，包含（下载完成百分比，已经下载的字节，当前下载速度，剩余下载时间）。</p>
+<p><strong>下载并以不同的文件名保存</strong></p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1"><span class="token function">wget</span> <span class="token parameter variable">-O</span> wordpress.zip http://www.jsdig.com/download.aspx?id<span class="token operator">=</span><span class="token number">1080</span>
+</span></code><div onclick="copied(this)" data-code="wget -O wordpress.zip http://www.jsdig.com/download.aspx?id=1080
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+<p>wget默认会以最后一个符合<code>/</code>的后面的字符来命令，对于动态链接的下载通常文件名会不正确。</p>
+<p>错误：下面的例子会下载一个文件并以名称<code>download.aspx?id=1080</code>保存:</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1"><span class="token function">wget</span> http://www.jsdig.com/download?id<span class="token operator">=</span><span class="token number">1</span>
+</span></code><div onclick="copied(this)" data-code="wget http://www.jsdig.com/download?id=1
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+<p>即使下载的文件是zip格式，它仍然以<code>download.php?id=1080</code>命名。</p>
+<p>正确：为了解决这个问题，我们可以使用参数<code>-O</code>来指定一个文件名：</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1"><span class="token function">wget</span> <span class="token parameter variable">-O</span> wordpress.zip http://www.jsdig.com/download.aspx?id<span class="token operator">=</span><span class="token number">1080</span>
+</span></code><div onclick="copied(this)" data-code="wget -O wordpress.zip http://www.jsdig.com/download.aspx?id=1080
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+<p><strong>wget限速下载</strong></p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1"><span class="token function">wget</span> --limit-rate<span class="token operator">=</span>300k http://www.jsdig.com/testfile.zip
+</span></code><div onclick="copied(this)" data-code="wget --limit-rate=300k http://www.jsdig.com/testfile.zip
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+<p>当你执行wget的时候，它默认会占用全部可能的宽带下载。但是当你准备下载一个大文件，而你还需要下载其它文件时就有必要限速了。</p>
+<p><strong>使用wget断点续传</strong></p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1"><span class="token function">wget</span> <span class="token parameter variable">-c</span> http://www.jsdig.com/testfile.zip
+</span></code><div onclick="copied(this)" data-code="wget -c http://www.jsdig.com/testfile.zip
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+<p>使用<code>wget -c</code>重新启动下载中断的文件，对于我们下载大文件时突然由于网络等原因中断非常有帮助，我们可以继续接着下载而不是重新下载一个文件。需要继续中断的下载时可以使用<code>-c</code>参数。</p>
+<p><strong>使用wget后台下载</strong></p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1"><span class="token function">wget</span> <span class="token parameter variable">-b</span> http://www.jsdig.com/testfile.zip
+</span><span class="code-line line-number" line="2">
+</span><span class="code-line line-number" line="3">Continuing <span class="token keyword">in</span> background, pid <span class="token number">1840</span>.
+</span><span class="code-line line-number" line="4">Output will be written to <span class="token string">'wget-log'</span><span class="token builtin class-name">.</span>
+</span></code><div onclick="copied(this)" data-code="wget -b http://www.jsdig.com/testfile.zip
+
+Continuing in background, pid 1840.
+Output will be written to &#x27;wget-log&#x27;.
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+<p>对于下载非常大的文件的时候，我们可以使用参数<code>-b</code>进行后台下载，你可以使用以下命令来察看下载进度：</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1"><span class="token function">tail</span> <span class="token parameter variable">-f</span> wget-log
+</span></code><div onclick="copied(this)" data-code="tail -f wget-log
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+<p><strong>伪装代理名称下载</strong></p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1"><span class="token function">wget</span> --user-agent<span class="token operator">=</span><span class="token string">"Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US) AppleWebKit/534.16 (KHTML, like Gecko) Chrome/10.0.648.204 Safari/534.16"</span> http://www.jsdig.com/testfile.zip
+</span></code><div onclick="copied(this)" data-code="wget --user-agent=&#x22;Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US) AppleWebKit/534.16 (KHTML, like Gecko) Chrome/10.0.648.204 Safari/534.16&#x22; http://www.jsdig.com/testfile.zip
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+<p>有些网站能通过根据判断代理名称不是浏览器而拒绝你的下载请求。不过你可以通过<code>--user-agent</code>参数伪装。</p>
+<p><strong>测试下载链接</strong></p>
+<p>当你打算进行定时下载，你应该在预定时间测试下载链接是否有效。我们可以增加<code>--spider</code>参数进行检查。</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1"><span class="token function">wget</span> <span class="token parameter variable">--spider</span> URL
+</span></code><div onclick="copied(this)" data-code="wget --spider URL
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+<p>如果下载链接正确，将会显示:</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">Spider mode enabled. Check <span class="token keyword">if</span> remote <span class="token function">file</span> exists.
+</span><span class="code-line line-number" line="2">HTTP request sent, awaiting response<span class="token punctuation">..</span>. <span class="token number">200</span> OK
+</span><span class="code-line line-number" line="3">Length: unspecified <span class="token punctuation">[</span>text/html<span class="token punctuation">]</span>
+</span><span class="code-line line-number" line="4">Remote <span class="token function">file</span> exists and could contain further links,
+</span><span class="code-line line-number" line="5">but recursion is disabled -- not retrieving.
+</span></code><div onclick="copied(this)" data-code="Spider mode enabled. Check if remote file exists.
+HTTP request sent, awaiting response... 200 OK
+Length: unspecified [text/html]
+Remote file exists and could contain further links,
+but recursion is disabled -- not retrieving.
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+<p>这保证了下载能在预定的时间进行，但当你给错了一个链接，将会显示如下错误:</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1"><span class="token function">wget</span> <span class="token parameter variable">--spider</span> url
+</span><span class="code-line line-number" line="2">Spider mode enabled. Check <span class="token keyword">if</span> remote <span class="token function">file</span> exists.
+</span><span class="code-line line-number" line="3">HTTP request sent, awaiting response<span class="token punctuation">..</span>. <span class="token number">404</span> Not Found
+</span><span class="code-line line-number" line="4">Remote <span class="token function">file</span> does not exist -- broken link<span class="token operator">!</span><span class="token operator">!</span><span class="token operator">!</span>
+</span></code><div onclick="copied(this)" data-code="wget --spider url
+Spider mode enabled. Check if remote file exists.
+HTTP request sent, awaiting response... 404 Not Found
+Remote file does not exist -- broken link!!!
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+<p>你可以在以下几种情况下使用<code>--spider</code>参数：</p>
+<ul>
+  <li>定时下载之前进行检查</li>
+  <li>间隔检测网站是否可用</li>
+  <li>检查网站页面的死链接</li>
+</ul>
+<p><strong>增加重试次数</strong></p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1"><span class="token function">wget</span> <span class="token parameter variable">--tries</span><span class="token operator">=</span><span class="token number">40</span> URL
+</span></code><div onclick="copied(this)" data-code="wget --tries=40 URL
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+<p>如果网络有问题或下载一个大文件也有可能失败。wget默认重试20次连接下载文件。如果需要，你可以使用<code>--tries</code>增加重试次数。</p>
+<p><strong>下载多个文件</strong></p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1"><span class="token function">wget</span> <span class="token parameter variable">-i</span> filelist.txt
+</span></code><div onclick="copied(this)" data-code="wget -i filelist.txt
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+<p>首先，保存一份下载链接文件：</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1"><span class="token function">cat</span> <span class="token operator">></span> filelist.txt
+</span><span class="code-line line-number" line="2">url1
+</span><span class="code-line line-number" line="3">url2
+</span><span class="code-line line-number" line="4">url3
+</span><span class="code-line line-number" line="5">url4
+</span></code><div onclick="copied(this)" data-code="cat > filelist.txt
+url1
+url2
+url3
+url4
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+<p>接着使用这个文件和参数<code>-i</code>下载。</p>
+<p><strong>镜像网站</strong></p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1"><span class="token function">wget</span> <span class="token parameter variable">--mirror</span> <span class="token parameter variable">-p</span> --convert-links <span class="token parameter variable">-P</span> ./LOCAL URL
+</span></code><div onclick="copied(this)" data-code="wget --mirror -p --convert-links -P ./LOCAL URL
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+<p>下载整个网站到本地。</p>
+<ul>
+  <li><code>--miror</code>开户镜像下载。</li>
+  <li><code>-p</code>下载所有为了html页面显示正常的文件。</li>
+  <li><code>--convert-links</code>下载后，转换成本地的链接。</li>
+  <li><code>-P ./LOCAL</code>保存所有文件和目录到本地指定目录。</li>
+</ul>
+<p><strong>过滤指定格式下载</strong></p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1"><span class="token function">wget</span> <span class="token parameter variable">--reject</span><span class="token operator">=</span>gif ur
+</span></code><div onclick="copied(this)" data-code="wget --reject=gif ur
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+<p>下载一个网站，但你不希望下载图片，可以使用这条命令。</p>
+<p><strong>把下载信息存入日志文件</strong></p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1"><span class="token function">wget</span> <span class="token parameter variable">-o</span> download.log URL
+</span></code><div onclick="copied(this)" data-code="wget -o download.log URL
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+<p>不希望下载信息直接显示在终端而是在一个日志文件，可以使用。</p>
+<p><strong>限制总下载文件大小</strong></p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1"><span class="token function">wget</span> <span class="token parameter variable">-Q5m</span> <span class="token parameter variable">-i</span> filelist.txt
+</span></code><div onclick="copied(this)" data-code="wget -Q5m -i filelist.txt
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+<p>当你想要下载的文件超过5M而退出下载，你可以使用。注意：这个参数对单个文件下载不起作用，只能递归下载时才有效。</p>
+<p><strong>下载指定格式文件</strong></p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1"><span class="token function">wget</span> <span class="token parameter variable">-r</span> <span class="token parameter variable">-A.pdf</span> url
+</span></code><div onclick="copied(this)" data-code="wget -r -A.pdf url
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+<p>可以在以下情况使用该功能：</p>
+<ul>
+  <li>下载一个网站的所有图片。</li>
+  <li>下载一个网站的所有视频。</li>
+  <li>下载一个网站的所有PDF文件。</li>
+</ul>
+<p><strong>FTP下载</strong></p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1"><span class="token function">wget</span> ftp-url
+</span><span class="code-line line-number" line="2"><span class="token function">wget</span> --ftp-user<span class="token operator">=</span>USERNAME --ftp-password<span class="token operator">=</span>PASSWORD url
+</span></code><div onclick="copied(this)" data-code="wget ftp-url
+wget --ftp-user=USERNAME --ftp-password=PASSWORD url
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+<p>可以使用wget来完成ftp链接的下载。</p>
+<p>使用wget匿名ftp下载：</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1"><span class="token function">wget</span> ftp-url
+</span></code><div onclick="copied(this)" data-code="wget ftp-url
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+<p>使用wget用户名和密码认证的ftp下载：</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1"><span class="token function">wget</span> --ftp-user<span class="token operator">=</span>USERNAME --ftp-password<span class="token operator">=</span>PASSWORD url
+</span></code><div onclick="copied(this)" data-code="wget --ftp-user=USERNAME --ftp-password=PASSWORD url
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+<style>markdown-style pre .copied {
+  display: flex;
+  position: absolute;
+  cursor: pointer;
+  color: #a5afbb;
+  top: 6px;
+  right: 6px;
+  border-radius: 5px;
+  background: #82828226;
+  padding: 6px;
+  font-size: 12px;
+  transition: all .3s;
+}
+markdown-style pre .copied:not(.active) {
+  visibility: hidden;
+}
+markdown-style pre:hover .copied {
+  visibility: visible;
+}
+markdown-style pre:hover .copied:hover {
+  background: #4caf50;
+  color: #fff;
+}
+markdown-style pre:hover .copied:active,
+markdown-style pre .copied.active {
+  background: #2e9b33;
+  color: #fff;
+}
+markdown-style pre .copied .octicon-copy {
+  display: block;
+}
+markdown-style pre .copied .octicon-check {
+  display: none;
+}
+markdown-style pre .active .octicon-copy {
+  display: none;
+}
+markdown-style pre .active .octicon-check {
+  display: block;
+}</style><script>/*! @uiw/copy-to-clipboard v1.0.12 | MIT (c) 2021 Kenny Wang | https://github.com/uiwjs/copy-to-clipboard.git */
+!function(e,t){"object"==typeof exports&&"undefined"!=typeof module?module.exports=t():"function"==typeof define&&define.amd?define(t):(e="undefined"!=typeof globalThis?globalThis:e||self).copyTextToClipboard=t()}(this,(function(){"use strict";return function(e,t){const o=document.createElement("textarea");o.value=e,o.setAttribute("readonly",""),o.style={position:"absolute",left:"-9999px"},document.body.appendChild(o);const n=document.getSelection().rangeCount>0&&document.getSelection().getRangeAt(0);o.select();let c=!1;try{c=!!document.execCommand("copy")}catch(e){c=!1}document.body.removeChild(o),n&&document.getSelection&&(document.getSelection().removeAllRanges(),document.getSelection().addRange(n)),t&&t(c)}}));
+
+function copied(target, str) {
+  target.classList.add('active');
+  copyTextToClipboard(target.dataset.code, function() {
+    setTimeout(() => {
+      target.classList.remove('active');
+    }, 2000);
+  });
+}</script></markdown-style>
+
+</div>
+<div class="footer ">
+  <!-- <a target="_blank" href="">添加命令</a> | -->
+  <a href="../hot.html">命令列表</a> |
+  <!-- <a href="" target="_blank">打赏捐赠</a> | -->
+  <a href="https://github.com/piwind/linux-command" target="_blank">Github</a> |
+  <a href="https://forum.piwind.com/" target="_blank">Piwind 社区</a>
+  <br />
+  收藏本站请使用 Ctrl+D 或者 Command+d
+  <br /> 共搜集到
+  <span id="commands_info">
+    611
+  </span> 个Linux命令，Version: 2025-06-08
+</div>
+<script type="text/javascript" src="../js/dt.js?v=1749366248290"></script>
+<script type="text/javascript" src="../js/index.js?v=1749366248290"></script>
+</body>
+</html>

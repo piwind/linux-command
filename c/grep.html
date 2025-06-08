@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+    <meta name="description" content="grep:强大的文本搜索工具 - 最专业的Linux命令大全，内容包含Linux命令手册、详解、学习，值得收藏的Linux命令速查手册。">
+    <meta name="keywords" content="Linux,Command,命令大全,Linux命令手册,grep,强大的文本搜索工具">
+    <title>grep 命令，Linux grep 命令详解：强大的文本搜索工具 -  Linux 命令搜索引擎</title>
+    <link rel="shortcut icon" href="../img/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="../css/index.css?v=1749366244630">
+    <script src="../js/dark-mode.min.js"></script>
+    <script type="module" src="../js/github-corners.js"></script>
+</head>
+<body>
+<dark-mode permanent dark="Dark" light="Light" style="position: fixed;left: 10px;top: 8px; z-index: 999;"></dark-mode>
+<github-corners target="__blank" z-index="999" position="fixed" href="https://github.com/piwind/linux-command"></github-corners>
+<div class="header header_list">
+  <div class="header_inner">
+      <div class="logo">
+          <a href="../index.html">
+            <img src="../img/logo.svg" alt="Linux Command Logo">
+          </a>
+      </div>
+      <div class="search">
+          <ul class="search-list" id="result">
+            <!-- <li><a href="#"><strong>find</strong> - 指定目录下查找文件。</a></li> -->
+          </ul>
+          <input type="text" class="query" id="query" autocomplete="off" autofocus="autofocus" placeholder="Linux 命令搜索"/>
+          <div class="enter-input">
+              <input type="hidden" id="current_path" value="/c/grep.html">
+              <button id="search_btn">搜索</button>
+          </div>
+      </div>
+  </div>
+</div>
+<script type="text/javascript" src="../js/copy-to-clipboard.js"></script>
+
+<div class="markdown-body">
+
+<span class="edit_btn">
+<a target="_blank" href="https://forum.piwind.com/">纠正错误</a> 
+<span class="split"></span>
+<a target="_blank" href="https://forum.piwind.com/">添加实例</a>
+</span>
+
+
+<dark-mode style="position: fixed; top: 8px; left: 10px; z-index: 999;;display: none;" dark="Dark" light="Light"></dark-mode><script>const t=document;const e="_dark_mode_theme_";const s="permanent";const o="colorschemechange";const i="permanentcolorscheme";const h="light";const r="dark";const n=(t,e,s=e)=>{Object.defineProperty(t,s,{enumerable:true,get(){const t=this.getAttribute(e);return t===null?"":t},set(t){this.setAttribute(e,t)}})};const c=(t,e,s=e)=>{Object.defineProperty(t,s,{enumerable:true,get(){return this.hasAttribute(e)},set(t){if(t){this.setAttribute(e,"")}else{this.removeAttribute(e)}}})};class a extends HTMLElement{static get observedAttributes(){return["mode",h,r,s]}LOCAL_NANE=e;constructor(){super();this.t()}connectedCallback(){n(this,"mode");n(this,r);n(this,h);c(this,s);const a=localStorage.getItem(e);if(a&&[h,r].includes(a)){this.mode=a;this.permanent=true}if(this.permanent&&!a){localStorage.setItem(e,this.mode)}const l=[h,r].includes(a);if(this.permanent&&a){this.o()}else{if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches){this.mode=r;this.o()}if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: light)").matches){this.mode=h;this.o()}}if(!this.permanent&&!l){window.matchMedia("(prefers-color-scheme: light)").onchange=t=>{this.mode=t.matches?h:r;this.o()};window.matchMedia("(prefers-color-scheme: dark)").onchange=t=>{this.mode=t.matches?r:h;this.o()}}const d=new MutationObserver(((s,h)=>{this.mode=t.documentElement.dataset.colorMode;if(this.permanent&&l){localStorage.setItem(e,this.mode);this.i(i,{permanent:this.permanent})}this.h();this.i(o,{colorScheme:this.mode})}));d.observe(t.documentElement,{attributes:true});this.i(o,{colorScheme:this.mode});this.h()}attributeChangedCallback(t,s,o){if(t==="mode"&&s!==o&&[h,r].includes(o)){const t=localStorage.getItem(e);if(this.mode===t){this.mode=o;this.h();this.o()}else if(this.mode&&this.mode!==t){this.h();this.o()}}else if((t===h||t===r)&&s!==o){this.h()}if(t==="permanent"&&typeof this.permanent==="boolean"){this.permanent?localStorage.setItem(e,this.mode):localStorage.removeItem(e)}}o(){t.documentElement.setAttribute("data-color-mode",this.mode)}h(){this.icon.textContent=this.mode===h?"🌒":"🌞";this.text.textContent=this.mode===h?this.getAttribute(r):this.getAttribute(h)}t(){var s=this.attachShadow({mode:"open"});this.label=t.createElement("span");this.label.setAttribute("class","wrapper");this.label.onclick=()=>{this.mode=this.mode===h?r:h;if(this.permanent){localStorage.setItem(e,this.mode)}this.o();this.h()};s.appendChild(this.label);this.icon=t.createElement("span");this.label.appendChild(this.icon);this.text=t.createElement("span");this.label.appendChild(this.text);const o=`
+[data-color-mode*='dark'], [data-color-mode*='dark'] body {
+  color-scheme: dark;
+  --color-theme-bg: #0d1117;
+  --color-theme-text: #c9d1d9;
+  background-color: var(--color-theme-bg);
+  color: var(--color-theme-text);
+}
+
+[data-color-mode*='light'], [data-color-mode*='light'] body {
+  color-scheme: light;
+  --color-theme-bg: #fff;
+  --color-theme-text: #24292f;
+  background-color: var(--color-theme-bg);
+  color: var(--color-theme-text);
+}`;const i="_dark_mode_style_";const n=t.getElementById(i);if(!n){var c=t.createElement("style");c.id=i;c.textContent=o;t.head.appendChild(c)}var a=t.createElement("style");a.textContent=`
+    .wrapper { cursor: pointer; user-select: none; position: relative; }
+    .wrapper > span + span { margin-left: .4rem; }
+    `;s.appendChild(a)}i(t,e){this.dispatchEvent(new CustomEvent(t,{bubbles:true,composed:true,detail:e}))}}customElements.define("dark-mode",a);</script><script>const __TEMPLATE__ = document.createElement('template');
+__TEMPLATE__.innerHTML = `
+<style>
+
+markdown-style h1:hover a.anchor .octicon-link:before,
+markdown-style h2:hover a.anchor .octicon-link:before,
+markdown-style h3:hover a.anchor .octicon-link:before,
+markdown-style h4:hover a.anchor .octicon-link:before,
+markdown-style h5:hover a.anchor .octicon-link:before,
+markdown-style h6:hover a.anchor .octicon-link:before {
+  width: 16px;
+  height: 16px;
+  content: ' ';
+  display: inline-block;
+  background-color: currentColor;
+  -webkit-mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' version='1.1' aria-hidden='true'><path fill-rule='evenodd' d='M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z'></path></svg>");
+  mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' version='1.1' aria-hidden='true'><path fill-rule='evenodd' d='M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z'></path></svg>");
+}
+[data-color-mode*='light'], [data-color-mode*='light'] body, markdown-style[theme*='light'] { --color-prettylights-syntax-comment: #6e7781; --color-prettylights-syntax-constant: #0550ae; --color-prettylights-syntax-entity: #8250df; --color-prettylights-syntax-storage-modifier-import: #24292f; --color-prettylights-syntax-entity-tag: #116329; --color-prettylights-syntax-keyword: #cf222e; --color-prettylights-syntax-string: #0a3069; --color-prettylights-syntax-variable: #953800; --color-prettylights-syntax-brackethighlighter-unmatched: #82071e; --color-prettylights-syntax-invalid-illegal-text: #f6f8fa; --color-prettylights-syntax-invalid-illegal-bg: #82071e; --color-prettylights-syntax-carriage-return-text: #f6f8fa; --color-prettylights-syntax-carriage-return-bg: #cf222e; --color-prettylights-syntax-string-regexp: #116329; --color-prettylights-syntax-markup-list: #3b2300; --color-prettylights-syntax-markup-heading: #0550ae; --color-prettylights-syntax-markup-italic: #24292f; --color-prettylights-syntax-markup-bold: #24292f; --color-prettylights-syntax-markup-deleted-text: #82071e; --color-prettylights-syntax-markup-deleted-bg: #FFEBE9; --color-prettylights-syntax-markup-inserted-text: #116329; --color-prettylights-syntax-markup-inserted-bg: #dafbe1; --color-prettylights-syntax-markup-changed-text: #953800; --color-prettylights-syntax-markup-changed-bg: #ffd8b5; --color-prettylights-syntax-markup-ignored-text: #eaeef2; --color-prettylights-syntax-markup-ignored-bg: #0550ae; --color-prettylights-syntax-meta-diff-range: #8250df; --color-prettylights-syntax-brackethighlighter-angle: #57606a; --color-prettylights-syntax-sublimelinter-gutter-mark: #8c959f; --color-prettylights-syntax-constant-other-reference-link: #0a3069; --color-fg-default: #24292f; --color-fg-muted: #57606a; --color-fg-subtle: #6e7781; --color-canvas-default: #ffffff; --color-canvas-subtle: #f6f8fa; --color-border-default: #d0d7de; --color-border-muted: hsla(210,18%,87%,1); --color-neutral-muted: rgba(175,184,193,0.2); --color-accent-fg: #0969da; --color-accent-emphasis: #0969da; --color-attention-subtle: #fff8c5; --color-danger-fg: #cf222e; } [data-color-mode*='dark'], [data-color-mode*='dark'] body, markdown-style[theme*='dark'] { --color-prettylights-syntax-comment: #8b949e; --color-prettylights-syntax-constant: #79c0ff; --color-prettylights-syntax-entity: #d2a8ff; --color-prettylights-syntax-storage-modifier-import: #c9d1d9; --color-prettylights-syntax-entity-tag: #7ee787; --color-prettylights-syntax-keyword: #ff7b72; --color-prettylights-syntax-string: #a5d6ff; --color-prettylights-syntax-variable: #ffa657; --color-prettylights-syntax-brackethighlighter-unmatched: #f85149; --color-prettylights-syntax-invalid-illegal-text: #f0f6fc; --color-prettylights-syntax-invalid-illegal-bg: #8e1519; --color-prettylights-syntax-carriage-return-text: #f0f6fc; --color-prettylights-syntax-carriage-return-bg: #b62324; --color-prettylights-syntax-string-regexp: #7ee787; --color-prettylights-syntax-markup-list: #f2cc60; --color-prettylights-syntax-markup-heading: #1f6feb; --color-prettylights-syntax-markup-italic: #c9d1d9; --color-prettylights-syntax-markup-bold: #c9d1d9; --color-prettylights-syntax-markup-deleted-text: #ffdcd7; --color-prettylights-syntax-markup-deleted-bg: #67060c; --color-prettylights-syntax-markup-inserted-text: #aff5b4; --color-prettylights-syntax-markup-inserted-bg: #033a16; --color-prettylights-syntax-markup-changed-text: #ffdfb6; --color-prettylights-syntax-markup-changed-bg: #5a1e02; --color-prettylights-syntax-markup-ignored-text: #c9d1d9; --color-prettylights-syntax-markup-ignored-bg: #1158c7; --color-prettylights-syntax-meta-diff-range: #d2a8ff; --color-prettylights-syntax-brackethighlighter-angle: #8b949e; --color-prettylights-syntax-sublimelinter-gutter-mark: #484f58; --color-prettylights-syntax-constant-other-reference-link: #a5d6ff; --color-fg-default: #c9d1d9; --color-fg-muted: #8b949e; --color-fg-subtle: #484f58; --color-canvas-default: #0d1117; --color-canvas-subtle: #161b22; --color-border-default: #30363d; --color-border-muted: #21262d; --color-neutral-muted: rgba(110,118,129,0.4); --color-accent-fg: #58a6ff; --color-accent-emphasis: #1f6feb; --color-attention-subtle: rgba(187,128,9,0.15); --color-danger-fg: #f85149; } markdown-style { display: block; -webkit-text-size-adjust: 100%; font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji"; font-size: 16px; line-height: 1.5; word-wrap: break-word; color: var(--color-fg-default); background-color: var(--color-canvas-default); } markdown-style details, markdown-style figcaption, markdown-style figure { display: block; } markdown-style summary { display: list-item; } markdown-style [hidden] { display: none !important; } markdown-style a { background-color: transparent; color: var(--color-accent-fg); text-decoration: none; } markdown-style a:active, markdown-style a:hover { outline-width: 0; } markdown-style abbr[title] { border-bottom: none; text-decoration: underline dotted; } markdown-style b, markdown-style strong { font-weight: 600; } markdown-style dfn { font-style: italic; } markdown-style h1 { margin: .67em 0; font-weight: 600; padding-bottom: .3em; font-size: 2em; border-bottom: 1px solid var(--color-border-muted); } markdown-style mark { background-color: var(--color-attention-subtle); color: var(--color-text-primary); } markdown-style small { font-size: 90%; } markdown-style sub, markdown-style sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; } markdown-style sub { bottom: -0.25em; } markdown-style sup { top: -0.5em; } markdown-style img { border-style: none; max-width: 100%; box-sizing: content-box; background-color: var(--color-canvas-default); } markdown-style code, markdown-style kbd, markdown-style pre, markdown-style samp { font-family: monospace,monospace; font-size: 1em; } markdown-style figure { margin: 1em 40px; } markdown-style hr { box-sizing: content-box; overflow: hidden; background: transparent; border-bottom: 1px solid var(--color-border-muted); height: .25em; padding: 0; margin: 24px 0; background-color: var(--color-border-default); border: 0; } markdown-style input { font: inherit; margin: 0; overflow: visible; font-family: inherit; font-size: inherit; line-height: inherit; } markdown-style [type=button], markdown-style [type=reset], markdown-style [type=submit] { -webkit-appearance: button; } markdown-style [type=button]::-moz-focus-inner, markdown-style [type=reset]::-moz-focus-inner, markdown-style [type=submit]::-moz-focus-inner { border-style: none; padding: 0; } markdown-style [type=button]:-moz-focusring, markdown-style [type=reset]:-moz-focusring, markdown-style [type=submit]:-moz-focusring { outline: 1px dotted ButtonText; } markdown-style [type=checkbox], markdown-style [type=radio] { box-sizing: border-box; padding: 0; } markdown-style [type=number]::-webkit-inner-spin-button, markdown-style [type=number]::-webkit-outer-spin-button { height: auto; } markdown-style [type=search] { -webkit-appearance: textfield; outline-offset: -2px; } markdown-style [type=search]::-webkit-search-cancel-button, markdown-style [type=search]::-webkit-search-decoration { -webkit-appearance: none; } markdown-style ::-webkit-input-placeholder { color: inherit; opacity: .54; } markdown-style ::-webkit-file-upload-button { -webkit-appearance: button; font: inherit; } markdown-style a:hover { text-decoration: underline; } markdown-style hr::before { display: table; content: ""; } markdown-style hr::after { display: table; clear: both; content: ""; } markdown-style table { border-spacing: 0; border-collapse: collapse; display: block; width: max-content; max-width: 100%; overflow: auto; } markdown-style td, markdown-style th { padding: 0; } markdown-style details summary { cursor: pointer; } markdown-style details:not([open])>*:not(summary) { display: none !important; } markdown-style kbd { display: inline-block; padding: 3px 5px; font: 11px ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace; line-height: 10px; color: var(--color-fg-default); vertical-align: middle; background-color: var(--color-canvas-subtle); border: solid 1px var(--color-neutral-muted); border-bottom-color: var(--color-neutral-muted); border-radius: 6px; box-shadow: inset 0 -1px 0 var(--color-neutral-muted); } markdown-style h1, markdown-style h2, markdown-style h3, markdown-style h4, markdown-style h5, markdown-style h6 { margin-top: 24px; margin-bottom: 16px; font-weight: 600; line-height: 1.25; } markdown-style h2 { font-weight: 600; padding-bottom: .3em; font-size: 1.5em; border-bottom: 1px solid var(--color-border-muted); } markdown-style h3 { font-weight: 600; font-size: 1.25em; } markdown-style h4 { font-weight: 600; font-size: 1em; } markdown-style h5 { font-weight: 600; font-size: .875em; } markdown-style h6 { font-weight: 600; font-size: .85em; color: var(--color-fg-muted); } markdown-style p { margin-top: 0; margin-bottom: 10px; } markdown-style blockquote { margin: 0; padding: 0 1em; color: var(--color-fg-muted); border-left: .25em solid var(--color-border-default); } markdown-style ul, markdown-style ol { margin-top: 0; margin-bottom: 0; padding-left: 2em; } markdown-style ol ol, markdown-style ul ol { list-style-type: lower-roman; } markdown-style ul ul ol, markdown-style ul ol ol, markdown-style ol ul ol, markdown-style ol ol ol { list-style-type: lower-alpha; } markdown-style dd { margin-left: 0; } markdown-style tt, markdown-style code { font-family: ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace; font-size: 12px; } markdown-style pre { margin-top: 0; margin-bottom: 0; font-family: ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace; font-size: 12px; word-wrap: normal; } markdown-style .octicon { display: inline-block; overflow: visible !important; vertical-align: text-bottom; fill: currentColor; } markdown-style ::placeholder { color: var(--color-fg-subtle); opacity: 1; } markdown-style input::-webkit-outer-spin-button, markdown-style input::-webkit-inner-spin-button { margin: 0; -webkit-appearance: none; appearance: none; }
+markdown-style .token.comment, markdown-style .token.prolog, markdown-style .token.doctype, markdown-style .token.cdata { color: var(--color-prettylights-syntax-comment); } markdown-style .token.namespace { opacity: 0.7; } markdown-style .token.tag, markdown-style .token.selector, markdown-style .token.constant, markdown-style .token.symbol, markdown-style .token.deleted { color: var(--color-prettylights-syntax-entity-tag); } markdown-style .token.maybe-class-name { color: var(--color-prettylights-syntax-variable); } markdown-style .token.property-access, markdown-style .token.operator, markdown-style .token.boolean, markdown-style .token.number, markdown-style .token.selector markdown-style .token.class, markdown-style .token.attr-name, markdown-style .token.string, markdown-style .token.char, markdown-style .token.builtin { color: var(--color-prettylights-syntax-constant); } markdown-style .token.deleted { color: var(--color-prettylights-syntax-markup-deleted-text); } markdown-style .token.property { color: var(--color-prettylights-syntax-constant); } markdown-style .token.punctuation { color: var(--color-prettylights-syntax-markup-bold); } markdown-style .token.function { color: var(--color-prettylights-syntax-entity); } markdown-style .code-line .token.deleted { background-color: var(--color-prettylights-syntax-markup-deleted-bg); } markdown-style .token.inserted { color: var(--color-prettylights-syntax-markup-inserted-text); } markdown-style .code-line .token.inserted { background-color: var(--color-prettylights-syntax-markup-inserted-bg); } markdown-style .token.variable { color: var(--color-prettylights-syntax-constant); } markdown-style .token.entity, markdown-style .token.url, .language-css markdown-style .token.string, .style markdown-style .token.string { color: var(--color-prettylights-syntax-string); } markdown-style .token.color, markdown-style .token.atrule, markdown-style .token.attr-value, markdown-style .token.function, markdown-style .token.class-name { color: var(--color-prettylights-syntax-string); } markdown-style .token.rule, markdown-style .token.regex, markdown-style .token.important, markdown-style .token.keyword { color: var(--color-prettylights-syntax-keyword); } markdown-style .token.coord { color: var(--color-prettylights-syntax-meta-diff-range); } markdown-style .token.important, markdown-style .token.bold { font-weight: bold; } markdown-style .token.italic { font-style: italic; } markdown-style .token.entity { cursor: help; }
+markdown-style [data-catalyst] { display: block; } markdown-style g-emoji { font-family: "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"; font-size: 1em; font-style: normal !important; font-weight: 400; line-height: 1; vertical-align: -0.075em; } markdown-style g-emoji img { width: 1em; height: 1em; } markdown-style::before { display: table; content: ""; } markdown-style::after { display: table; clear: both; content: ""; } markdown-style>*:first-child { margin-top: 0 !important; } markdown-style>*:last-child { margin-bottom: 0 !important; } markdown-style a:not([href]) { color: inherit; text-decoration: none; } markdown-style .absent { color: var(--color-danger-fg); } markdown-style a.anchor { float: left; padding-right: 4px; margin-left: -20px; line-height: 1; } markdown-style a.anchor:focus { outline: none; } markdown-style p, markdown-style blockquote, markdown-style ul, markdown-style ol, markdown-style dl, markdown-style table, markdown-style pre, markdown-style details { margin-top: 0; margin-bottom: 16px; } markdown-style blockquote>:first-child { margin-top: 0; } markdown-style blockquote>:last-child { margin-bottom: 0; } markdown-style sup>a::before { content: "["; } markdown-style sup>a::after { content: "]"; }
+markdown-style .octicon-video { border: 1px solid #d0d7de !important; border-radius: 6px !important; display: block; } markdown-style .octicon-video summary { border-bottom: 1px solid #d0d7de !important; padding: 8px 16px !important; cursor: pointer; } markdown-style .octicon-video > video { display: block !important; max-width: 100% !important; padding: 2px; box-sizing: border-box; border-bottom-right-radius: 6px !important; border-bottom-left-radius: 6px !important; } markdown-style details.octicon-video:not([open])>*:not(summary) { display: none !important; } markdown-style details.octicon-video:not([open]) > summary { border-bottom: 0 !important; } markdown-style h1 .octicon-link, markdown-style h2 .octicon-link, markdown-style h3 .octicon-link, markdown-style h4 .octicon-link, markdown-style h5 .octicon-link, markdown-style h6 .octicon-link { color: var(--color-fg-default); vertical-align: middle; visibility: hidden; } markdown-style h1:hover .anchor, markdown-style h2:hover .anchor, markdown-style h3:hover .anchor, markdown-style h4:hover .anchor, markdown-style h5:hover .anchor, markdown-style h6:hover .anchor { text-decoration: none; } markdown-style h1:hover .anchor .octicon-link, markdown-style h2:hover .anchor .octicon-link, markdown-style h3:hover .anchor .octicon-link, markdown-style h4:hover .anchor .octicon-link, markdown-style h5:hover .anchor .octicon-link, markdown-style h6:hover .anchor .octicon-link { visibility: visible; } markdown-style h1 tt, markdown-style h1 code, markdown-style h2 tt, markdown-style h2 code, markdown-style h3 tt, markdown-style h3 code, markdown-style h4 tt, markdown-style h4 code, markdown-style h5 tt, markdown-style h5 code, markdown-style h6 tt, markdown-style h6 code { padding: 0 .2em; font-size: inherit; } markdown-style ul.no-list, markdown-style ol.no-list { padding: 0; list-style-type: none; } markdown-style ol[type="1"] { list-style-type: decimal; } markdown-style ol[type=a] { list-style-type: lower-alpha; } markdown-style ol[type=i] { list-style-type: lower-roman; } markdown-style div>ol:not([type]) { list-style-type: decimal; } markdown-style ul ul, markdown-style ul ol, markdown-style ol ol, markdown-style ol ul { margin-top: 0; margin-bottom: 0; } markdown-style li>p { margin-top: 16px; } markdown-style li+li { margin-top: .25em; } markdown-style dl { padding: 0; } markdown-style dl dt { padding: 0; margin-top: 16px; font-size: 1em; font-style: italic; font-weight: 600; } markdown-style dl dd { padding: 0 16px; margin-bottom: 16px; } markdown-style table th { font-weight: 600; } markdown-style table th, markdown-style table td { padding: 6px 13px; border: 1px solid var(--color-border-default); } markdown-style table tr { background-color: var(--color-canvas-default); border-top: 1px solid var(--color-border-muted); } markdown-style table tr:nth-child(2n) { background-color: var(--color-canvas-subtle); } markdown-style table img { background-color: transparent; vertical-align: middle; } markdown-style img[align=right] { padding-left: 20px; } markdown-style img[align=left] { padding-right: 20px; } markdown-style .emoji { max-width: none; vertical-align: text-top; background-color: transparent; } markdown-style span.frame { display: block; overflow: hidden; } markdown-style span.frame>span { display: block; float: left; width: auto; padding: 7px; margin: 13px 0 0; overflow: hidden; border: 1px solid var(--color-border-default); } markdown-style span.frame span img { display: block; float: left; } markdown-style span.frame span span { display: block; padding: 5px 0 0; clear: both; color: var(--color-fg-default); } markdown-style span.align-center { display: block; overflow: hidden; clear: both; } markdown-style span.align-center>span { display: block; margin: 13px auto 0; overflow: hidden; text-align: center; } markdown-style span.align-center span img { margin: 0 auto; text-align: center; } markdown-style span.align-right { display: block; overflow: hidden; clear: both; } markdown-style span.align-right>span { display: block; margin: 13px 0 0; overflow: hidden; text-align: right; } markdown-style span.align-right span img { margin: 0; text-align: right; } markdown-style span.float-left { display: block; float: left; margin-right: 13px; overflow: hidden; } markdown-style span.float-left span { margin: 13px 0 0; } markdown-style span.float-right { display: block; float: right; margin-left: 13px; overflow: hidden; } markdown-style span.float-right>span { display: block; margin: 13px auto 0; overflow: hidden; text-align: right; } markdown-style code, markdown-style tt { padding: .2em .4em; margin: 0; font-size: 85%; background-color: var(--color-neutral-muted); border-radius: 6px; } markdown-style code br, markdown-style tt br { display: none; } markdown-style del code { text-decoration: inherit; } markdown-style pre code { font-size: 100%; } markdown-style pre>code { padding: 0; margin: 0; word-break: normal; white-space: pre; background: transparent; border: 0; } markdown-style pre { position: relative; font-size: 85%; line-height: 1.45; background-color: var(--color-canvas-subtle); border-radius: 6px; } markdown-style pre code, markdown-style pre tt { display: inline; max-width: auto; padding: 0; margin: 0; overflow: visible; line-height: inherit; word-wrap: normal; background-color: transparent; border: 0; } markdown-style pre > code { padding: 16px; overflow: auto; display: block; } markdown-style .csv-data td, markdown-style .csv-data th { padding: 5px; overflow: hidden; font-size: 12px; line-height: 1; text-align: left; white-space: nowrap; } markdown-style .csv-data .blob-num { padding: 10px 8px 9px; text-align: right; background: var(--color-canvas-default); border: 0; } markdown-style .csv-data tr { border-top: 0; } markdown-style .csv-data th { font-weight: 600; background: var(--color-canvas-subtle); border-top: 0; } markdown-style .footnotes { font-size: 12px; color: var(--color-fg-muted); border-top: 1px solid var(--color-border-default); } markdown-style .footnotes ol { padding-left: 16px; } markdown-style .footnotes li { position: relative; } markdown-style .footnotes li:target::before { position: absolute; top: -8px; right: -8px; bottom: -8px; left: -24px; pointer-events: none; content: ""; border: 2px solid var(--color-accent-emphasis); border-radius: 6px; } markdown-style .footnotes li:target { color: var(--color-fg-default); } markdown-style .footnotes .data-footnote-backref g-emoji { font-family: monospace; } markdown-style .task-list-item { list-style-type: none; } markdown-style .task-list-item label { font-weight: 400; } markdown-style .task-list-item.enabled label { cursor: pointer; } markdown-style .task-list-item+.task-list-item { margin-top: 3px; } markdown-style .task-list-item .handle { display: none; } markdown-style .task-list-item-checkbox, markdown-style input[type="checkbox"] { margin: 0 .2em .25em -1.6em; vertical-align: middle; } markdown-style .contains-task-list:dir(rtl) .task-list-item-checkbox, markdown-style .contains-task-list:dir(rtl) input[type="checkbox"] { margin: 0 -1.6em .25em .2em; } markdown-style ::-webkit-calendar-picker-indicator { filter: invert(50%); }
+</style>
+<slot></slot>
+`;
+class MarkdownStyle extends HTMLElement {
+    constructor() {
+        super();
+        this.shadow = this.attachShadow({ mode: 'open' });
+        this.shadow.appendChild(__TEMPLATE__.content.cloneNode(true));
+        const style = Array.prototype.slice
+            .call(this.shadow.children)
+            .find((item) => item.tagName === 'STYLE');
+        if (style) {
+            const id = '__MARKDOWN_STYLE__';
+            const findStyle = document.getElementById(id);
+            if (!findStyle) {
+                style.id = id;
+                document.head.append(style);
+            }
+        }
+    }
+    get theme() {
+        const value = this.getAttribute('theme');
+        return value === null ? '' : value;
+    }
+    set theme(name) {
+        this.setAttribute('theme', name);
+    }
+    connectedCallback() {
+        if (!this.theme) {
+            const { colorMode } = document.documentElement.dataset;
+            this.theme = colorMode;
+            const observer = new MutationObserver((mutationsList, observer) => {
+                this.theme = document.documentElement.dataset.colorMode;
+            });
+            observer.observe(document.documentElement, { attributes: true });
+            window.matchMedia('(prefers-color-scheme: light)').onchange = (event) => {
+                this.theme = event.matches ? 'light' : 'dark';
+            };
+            window.matchMedia('(prefers-color-scheme: dark)').onchange = (event) => {
+                this.theme = event.matches ? 'dark' : 'light';
+            };
+        }
+    }
+}
+customElements.define('markdown-style', MarkdownStyle);</script><markdown-style style="max-width: 960px; margin: 0 auto 60px auto; padding: 8px;" class="markdown-style">
+<h1 id="grep"><a class="anchor" aria-hidden="true" tabindex="-1" href="#grep"><span class="octicon octicon-link"></span></a>grep</h1>
+<p>强大的文本搜索工具</p>
+<h2 id="补充说明"><a class="anchor" aria-hidden="true" tabindex="-1" href="#补充说明"><span class="octicon octicon-link"></span></a>补充说明</h2>
+<p><strong>grep</strong> （global search regular expression(RE) and print out the line，全面搜索正则表达式并把行打印出来）是一种强大的文本搜索工具，它能使用正则表达式搜索文本，并把匹配的行打印出来。用于过滤/搜索的特定字符。可使用正则表达式能配合多种命令使用，使用上十分灵活。</p>
+<h3 id="选项"><a class="anchor" aria-hidden="true" tabindex="-1" href="#选项"><span class="octicon octicon-link"></span></a>选项</h3>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1"><span class="token parameter variable">-a</span> <span class="token parameter variable">--text</span>  <span class="token comment"># 不要忽略二进制数据。</span>
+</span><span class="code-line line-number" line="2"><span class="token parameter variable">-A</span> <span class="token operator">&#x3C;</span>显示行数<span class="token operator">></span>   --after-context<span class="token operator">=</span><span class="token operator">&#x3C;</span>显示行数<span class="token operator">></span>   <span class="token comment"># 除了显示符合范本样式的那一行之外，并显示该行之后的内容。</span>
+</span><span class="code-line line-number" line="3"><span class="token parameter variable">-b</span> --byte-offset                           <span class="token comment"># 在显示符合范本样式的那一行之外，并显示该行之前的内容。</span>
+</span><span class="code-line line-number" line="4">-B<span class="token operator">&#x3C;</span>显示行数<span class="token operator">></span>   --before-context<span class="token operator">=</span><span class="token operator">&#x3C;</span>显示行数<span class="token operator">></span>   <span class="token comment"># 除了显示符合样式的那一行之外，并显示该行之前的内容。</span>
+</span><span class="code-line line-number" line="5"><span class="token parameter variable">-c</span> <span class="token parameter variable">--count</span>    <span class="token comment"># 计算符合范本样式的列数。</span>
+</span><span class="code-line line-number" line="6">-C<span class="token operator">&#x3C;</span>显示行数<span class="token operator">></span> <span class="token parameter variable">--context</span><span class="token operator">=</span><span class="token operator">&#x3C;</span>显示行数<span class="token operator">></span>或-<span class="token operator">&#x3C;</span>显示行数<span class="token operator">></span> <span class="token comment"># 除了显示符合范本样式的那一列之外，并显示该列之前后的内容。</span>
+</span><span class="code-line line-number" line="7">-d<span class="token operator">&#x3C;</span>进行动作<span class="token operator">></span> <span class="token parameter variable">--directories</span><span class="token operator">=</span><span class="token operator">&#x3C;</span>动作<span class="token operator">></span>  <span class="token comment"># 当指定要查找的是目录而非文件时，必须使用这项参数，否则grep命令将回报信息并停止动作。</span>
+</span><span class="code-line line-number" line="8">-e<span class="token operator">&#x3C;</span>范本样式<span class="token operator">></span> <span class="token parameter variable">--regexp</span><span class="token operator">=</span><span class="token operator">&#x3C;</span>范本样式<span class="token operator">></span>   <span class="token comment"># 指定字符串作为查找文件内容的范本样式。</span>
+</span><span class="code-line line-number" line="9"><span class="token parameter variable">-E</span> --extended-regexp             <span class="token comment"># 将范本样式为延伸的普通表示法来使用，意味着使用能使用扩展正则表达式。</span>
+</span><span class="code-line line-number" line="10">-f<span class="token operator">&#x3C;</span>范本文件<span class="token operator">></span> <span class="token parameter variable">--file</span><span class="token operator">=</span><span class="token operator">&#x3C;</span>规则文件<span class="token operator">></span>     <span class="token comment"># 指定范本文件，其内容有一个或多个范本样式，让grep查找符合范本条件的文件内容，格式为每一列的范本样式。</span>
+</span><span class="code-line line-number" line="11"><span class="token parameter variable">-F</span> --fixed-regexp   <span class="token comment"># 将范本样式视为固定字符串的列表。</span>
+</span><span class="code-line line-number" line="12"><span class="token parameter variable">-G</span> --basic-regexp   <span class="token comment"># 将范本样式视为普通的表示法来使用。</span>
+</span><span class="code-line line-number" line="13"><span class="token parameter variable">-h</span> --no-filename    <span class="token comment"># 在显示符合范本样式的那一列之前，不标示该列所属的文件名称。</span>
+</span><span class="code-line line-number" line="14"><span class="token parameter variable">-H</span> --with-filename  <span class="token comment"># 在显示符合范本样式的那一列之前，标示该列的文件名称。</span>
+</span><span class="code-line line-number" line="15"><span class="token parameter variable">-i</span> --ignore-case    <span class="token comment"># 忽略字符大小写的差别。</span>
+</span><span class="code-line line-number" line="16"><span class="token parameter variable">-l</span> --file-with-matches   <span class="token comment"># 列出文件内容符合指定的范本样式的文件名称。</span>
+</span><span class="code-line line-number" line="17"><span class="token parameter variable">-L</span> --files-without-match <span class="token comment"># 列出文件内容不符合指定的范本样式的文件名称。</span>
+</span><span class="code-line line-number" line="18"><span class="token parameter variable">-n</span> --line-number         <span class="token comment"># 在显示符合范本样式的那一列之前，标示出该列的编号。</span>
+</span><span class="code-line line-number" line="19"><span class="token parameter variable">-P</span> --perl-regexp         <span class="token comment"># PATTERN 是一个 Perl 正则表达式</span>
+</span><span class="code-line line-number" line="20"><span class="token parameter variable">-q</span> --quiet或--silent     <span class="token comment"># 不显示任何信息。</span>
+</span><span class="code-line line-number" line="21">-R/-r  <span class="token parameter variable">--recursive</span>       <span class="token comment"># 此参数的效果和指定“-d recurse”参数相同。</span>
+</span><span class="code-line line-number" line="22"><span class="token parameter variable">-s</span> --no-messages  <span class="token comment"># 不显示错误信息。</span>
+</span><span class="code-line line-number" line="23"><span class="token parameter variable">-v</span> --revert-match <span class="token comment"># 反转查找。</span>
+</span><span class="code-line line-number" line="24"><span class="token parameter variable">-V</span> <span class="token parameter variable">--version</span>      <span class="token comment"># 显示版本信息。   </span>
+</span><span class="code-line line-number" line="25"><span class="token parameter variable">-w</span> --word-regexp  <span class="token comment"># 只显示全字符合的列。</span>
+</span><span class="code-line line-number" line="26"><span class="token parameter variable">-x</span> --line-regexp  <span class="token comment"># 只显示全列符合的列。</span>
+</span><span class="code-line line-number" line="27"><span class="token parameter variable">-y</span> <span class="token comment"># 此参数效果跟“-i”相同。</span>
+</span><span class="code-line line-number" line="28"><span class="token parameter variable">-o</span> <span class="token comment"># 只输出文件中匹配到的部分。</span>
+</span><span class="code-line line-number" line="29"><span class="token parameter variable">-m</span> <span class="token operator">&#x3C;</span>num<span class="token operator">></span> --max-count<span class="token operator">=</span><span class="token operator">&#x3C;</span>num<span class="token operator">></span> <span class="token comment"># 找到num行结果后停止查找，用来限制匹配行数</span>
+</span></code><div onclick="copied(this)" data-code="-a --text  # 不要忽略二进制数据。
+-A <显示行数>   --after-context=<显示行数>   # 除了显示符合范本样式的那一行之外，并显示该行之后的内容。
+-b --byte-offset                           # 在显示符合范本样式的那一行之外，并显示该行之前的内容。
+-B<显示行数>   --before-context=<显示行数>   # 除了显示符合样式的那一行之外，并显示该行之前的内容。
+-c --count    # 计算符合范本样式的列数。
+-C<显示行数> --context=<显示行数>或-<显示行数> # 除了显示符合范本样式的那一列之外，并显示该列之前后的内容。
+-d<进行动作> --directories=<动作>  # 当指定要查找的是目录而非文件时，必须使用这项参数，否则grep命令将回报信息并停止动作。
+-e<范本样式> --regexp=<范本样式>   # 指定字符串作为查找文件内容的范本样式。
+-E --extended-regexp             # 将范本样式为延伸的普通表示法来使用，意味着使用能使用扩展正则表达式。
+-f<范本文件> --file=<规则文件>     # 指定范本文件，其内容有一个或多个范本样式，让grep查找符合范本条件的文件内容，格式为每一列的范本样式。
+-F --fixed-regexp   # 将范本样式视为固定字符串的列表。
+-G --basic-regexp   # 将范本样式视为普通的表示法来使用。
+-h --no-filename    # 在显示符合范本样式的那一列之前，不标示该列所属的文件名称。
+-H --with-filename  # 在显示符合范本样式的那一列之前，标示该列的文件名称。
+-i --ignore-case    # 忽略字符大小写的差别。
+-l --file-with-matches   # 列出文件内容符合指定的范本样式的文件名称。
+-L --files-without-match # 列出文件内容不符合指定的范本样式的文件名称。
+-n --line-number         # 在显示符合范本样式的那一列之前，标示出该列的编号。
+-P --perl-regexp         # PATTERN 是一个 Perl 正则表达式
+-q --quiet或--silent     # 不显示任何信息。
+-R/-r  --recursive       # 此参数的效果和指定“-d recurse”参数相同。
+-s --no-messages  # 不显示错误信息。
+-v --revert-match # 反转查找。
+-V --version      # 显示版本信息。   
+-w --word-regexp  # 只显示全字符合的列。
+-x --line-regexp  # 只显示全列符合的列。
+-y # 此参数效果跟“-i”相同。
+-o # 只输出文件中匹配到的部分。
+-m <num> --max-count=<num> # 找到num行结果后停止查找，用来限制匹配行数
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+<h3 id="规则表达式"><a class="anchor" aria-hidden="true" tabindex="-1" href="#规则表达式"><span class="octicon octicon-link"></span></a>规则表达式</h3>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1">^    <span class="token comment"># 锚定行的开始 如：'^grep'匹配所有以grep开头的行。    </span>
+</span><span class="code-line line-number" line="2">$    <span class="token comment"># 锚定行的结束 如：'grep$' 匹配所有以grep结尾的行。</span>
+</span><span class="code-line line-number" line="3"><span class="token builtin class-name">.</span>    <span class="token comment"># 匹配一个非换行符的字符 如：'gr.p'匹配gr后接一个任意字符，然后是p。    </span>
+</span><span class="code-line line-number" line="4">*    <span class="token comment"># 匹配零个或多个先前字符 如：'*grep'匹配所有一个或多个空格后紧跟grep的行。    </span>
+</span><span class="code-line line-number" line="5">.*   <span class="token comment"># 一起用代表任意字符。   </span>
+</span><span class="code-line line-number" line="6"><span class="token punctuation">[</span><span class="token punctuation">]</span>   <span class="token comment"># 匹配一个指定范围内的字符，如'[Gg]rep'匹配Grep和grep。    </span>
+</span><span class="code-line line-number" line="7"><span class="token punctuation">[</span>^<span class="token punctuation">]</span>  <span class="token comment"># 匹配一个不在指定范围内的字符，如：'[^A-Z]rep' 匹配不包含 A-Z 中的字母开头，紧跟 rep 的行</span>
+</span><span class="code-line line-number" line="8"><span class="token punctuation">\</span><span class="token punctuation">(</span><span class="token punctuation">..</span><span class="token punctuation">\</span><span class="token punctuation">)</span>  <span class="token comment"># 标记匹配字符，如'\(love\)'，love被标记为1。    </span>
+</span><span class="code-line line-number" line="9"><span class="token punctuation">\</span><span class="token operator">&#x3C;</span>      <span class="token comment"># 锚定单词的开始，如:'\&#x3C;grep'匹配包含以grep开头的单词的行。    </span>
+</span><span class="code-line line-number" line="10"><span class="token punctuation">\</span><span class="token operator">></span>      <span class="token comment"># 锚定单词的结束，如'grep\>'匹配包含以grep结尾的单词的行。    </span>
+</span><span class="code-line line-number" line="11">x<span class="token punctuation">\</span><span class="token punctuation">{</span>m<span class="token punctuation">\</span><span class="token punctuation">}</span>  <span class="token comment"># 重复字符x，m次，如：'0\{5\}'匹配包含5个o的行。    </span>
+</span><span class="code-line line-number" line="12">x<span class="token punctuation">\</span><span class="token punctuation">{</span>m,<span class="token punctuation">\</span><span class="token punctuation">}</span>   <span class="token comment"># 重复字符x,至少m次，如：'o\{5,\}'匹配至少有5个o的行。    </span>
+</span><span class="code-line line-number" line="13">x<span class="token punctuation">\</span><span class="token punctuation">{</span>m,n<span class="token punctuation">\</span><span class="token punctuation">}</span>  <span class="token comment"># 重复字符x，至少m次，不多于n次，如：'o\{5,10\}'匹配5--10个o的行。   </span>
+</span><span class="code-line line-number" line="14"><span class="token punctuation">\</span>w    <span class="token comment"># 匹配文字和数字字符，也就是[A-Za-z0-9]，如：'G\w*p'匹配以G后跟零个或多个文字或数字字符，然后是p。   </span>
+</span><span class="code-line line-number" line="15"><span class="token punctuation">\</span>W    <span class="token comment"># \w的反置形式，匹配一个或多个非单词字符，如点号句号等。   </span>
+</span><span class="code-line line-number" line="16"><span class="token punctuation">\</span>b    <span class="token comment"># 单词锁定符，如: '\bgrep\b'只匹配grep。  </span>
+</span></code><div onclick="copied(this)" data-code="^    # 锚定行的开始 如：&#x27;^grep&#x27;匹配所有以grep开头的行。    
+$    # 锚定行的结束 如：&#x27;grep$&#x27; 匹配所有以grep结尾的行。
+.    # 匹配一个非换行符的字符 如：&#x27;gr.p&#x27;匹配gr后接一个任意字符，然后是p。    
+*    # 匹配零个或多个先前字符 如：&#x27;*grep&#x27;匹配所有一个或多个空格后紧跟grep的行。    
+.*   # 一起用代表任意字符。   
+[]   # 匹配一个指定范围内的字符，如&#x27;[Gg]rep&#x27;匹配Grep和grep。    
+[^]  # 匹配一个不在指定范围内的字符，如：&#x27;[^A-Z]rep&#x27; 匹配不包含 A-Z 中的字母开头，紧跟 rep 的行
+\(..\)  # 标记匹配字符，如&#x27;\(love\)&#x27;，love被标记为1。    
+\<      # 锚定单词的开始，如:&#x27;\<grep&#x27;匹配包含以grep开头的单词的行。    
+\>      # 锚定单词的结束，如&#x27;grep\>&#x27;匹配包含以grep结尾的单词的行。    
+x\{m\}  # 重复字符x，m次，如：&#x27;0\{5\}&#x27;匹配包含5个o的行。    
+x\{m,\}   # 重复字符x,至少m次，如：&#x27;o\{5,\}&#x27;匹配至少有5个o的行。    
+x\{m,n\}  # 重复字符x，至少m次，不多于n次，如：&#x27;o\{5,10\}&#x27;匹配5--10个o的行。   
+\w    # 匹配文字和数字字符，也就是[A-Za-z0-9]，如：&#x27;G\w*p&#x27;匹配以G后跟零个或多个文字或数字字符，然后是p。   
+\W    # \w的反置形式，匹配一个或多个非单词字符，如点号句号等。   
+\b    # 单词锁定符，如: &#x27;\bgrep\b&#x27;只匹配grep。  
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+<h2 id="grep命令常见用法"><a class="anchor" aria-hidden="true" tabindex="-1" href="#grep命令常见用法"><span class="octicon octicon-link"></span></a>grep命令常见用法</h2>
+<p>在文件中搜索一个单词，命令会返回一个包含 <strong>“match_pattern”</strong> 的文本行：</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1"><span class="token function">grep</span> match_pattern file_name
+</span><span class="code-line line-number" line="2"><span class="token function">grep</span> <span class="token string">"match_pattern"</span> file_name
+</span></code><div onclick="copied(this)" data-code="grep match_pattern file_name
+grep &#x22;match_pattern&#x22; file_name
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+<p>在多个文件中查找：</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1"><span class="token function">grep</span> <span class="token string">"match_pattern"</span> file_1 file_2 file_3 <span class="token punctuation">..</span>.
+</span></code><div onclick="copied(this)" data-code="grep &#x22;match_pattern&#x22; file_1 file_2 file_3 ...
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+<p>输出除之外的所有行 <strong>-v</strong> 选项：</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1"><span class="token function">grep</span> <span class="token parameter variable">-v</span> <span class="token string">"match_pattern"</span> file_name
+</span></code><div onclick="copied(this)" data-code="grep -v &#x22;match_pattern&#x22; file_name
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+<p>标记匹配颜色 <strong>--color=auto</strong> 选项：</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1"><span class="token function">grep</span> <span class="token string">"match_pattern"</span> file_name <span class="token parameter variable">--color</span><span class="token operator">=</span>auto
+</span></code><div onclick="copied(this)" data-code="grep &#x22;match_pattern&#x22; file_name --color=auto
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+<p>使用正则表达式 <strong>-E</strong> 选项：</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1"><span class="token function">grep</span> <span class="token parameter variable">-E</span> <span class="token string">"[1-9]+"</span>
+</span><span class="code-line line-number" line="2"><span class="token comment"># 或</span>
+</span><span class="code-line line-number" line="3"><span class="token function">egrep</span> <span class="token string">"[1-9]+"</span>
+</span></code><div onclick="copied(this)" data-code="grep -E &#x22;[1-9]+&#x22;
+# 或
+egrep &#x22;[1-9]+&#x22;
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+<p>使用正则表达式 <strong>-P</strong> 选项：</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1"><span class="token function">grep</span> <span class="token parameter variable">-P</span> <span class="token string">"(\d{3}\-){2}\d{4}"</span> file_name
+</span></code><div onclick="copied(this)" data-code="grep -P &#x22;(\d{3}\-){2}\d{4}&#x22; file_name
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+<p>只输出文件中匹配到的部分 <strong>-o</strong> 选项：</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1"><span class="token builtin class-name">echo</span> this is a <span class="token builtin class-name">test</span> line. <span class="token operator">|</span> <span class="token function">grep</span> <span class="token parameter variable">-o</span> <span class="token parameter variable">-E</span> <span class="token string">"[a-z]+\."</span>
+</span><span class="code-line line-number" line="2">line.
+</span><span class="code-line line-number" line="3">
+</span><span class="code-line line-number" line="4"><span class="token builtin class-name">echo</span> this is a <span class="token builtin class-name">test</span> line. <span class="token operator">|</span> <span class="token function">egrep</span> <span class="token parameter variable">-o</span> <span class="token string">"[a-z]+\."</span>
+</span><span class="code-line line-number" line="5">line.
+</span></code><div onclick="copied(this)" data-code="echo this is a test line. | grep -o -E &#x22;[a-z]+\.&#x22;
+line.
+
+echo this is a test line. | egrep -o &#x22;[a-z]+\.&#x22;
+line.
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+<p>统计文件或者文本中包含匹配字符串的行数 <strong>-c</strong> 选项：</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1"><span class="token function">grep</span> <span class="token parameter variable">-c</span> <span class="token string">"text"</span> file_name
+</span></code><div onclick="copied(this)" data-code="grep -c &#x22;text&#x22; file_name
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+<p>搜索命令行历史记录中 输入过 <code>git</code> 命令的记录：</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1"><span class="token function">history</span> <span class="token operator">|</span> <span class="token function">grep</span> <span class="token function">git</span>
+</span></code><div onclick="copied(this)" data-code="history | grep git
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+<p>输出包含匹配字符串的行数 <strong>-n</strong> 选项：</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1"><span class="token function">grep</span> <span class="token string">"text"</span> <span class="token parameter variable">-n</span> file_name
+</span><span class="code-line line-number" line="2"><span class="token comment"># 或</span>
+</span><span class="code-line line-number" line="3"><span class="token function">cat</span> file_name <span class="token operator">|</span> <span class="token function">grep</span> <span class="token string">"text"</span> <span class="token parameter variable">-n</span>
+</span><span class="code-line line-number" line="4">
+</span><span class="code-line line-number" line="5"><span class="token comment">#多个文件</span>
+</span><span class="code-line line-number" line="6"><span class="token function">grep</span> <span class="token string">"text"</span> <span class="token parameter variable">-n</span> file_1 file_2
+</span></code><div onclick="copied(this)" data-code="grep &#x22;text&#x22; -n file_name
+# 或
+cat file_name | grep &#x22;text&#x22; -n
+
+#多个文件
+grep &#x22;text&#x22; -n file_1 file_2
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+<p>打印样式匹配所位于的字符或字节偏移：</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1"><span class="token builtin class-name">echo</span> gun is not unix <span class="token operator">|</span> <span class="token function">grep</span> <span class="token parameter variable">-b</span> <span class="token parameter variable">-o</span> <span class="token string">"not"</span>
+</span><span class="code-line line-number" line="2"><span class="token number">7</span>:not
+</span><span class="code-line line-number" line="3"><span class="token comment">#一行中字符串的字符偏移是从该行的第一个字符开始计算，起始值为0。选项  **-b -o**  一般总是配合使用。</span>
+</span></code><div onclick="copied(this)" data-code="echo gun is not unix | grep -b -o &#x22;not&#x22;
+7:not
+#一行中字符串的字符偏移是从该行的第一个字符开始计算，起始值为0。选项  **-b -o**  一般总是配合使用。
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+<p>搜索多个文件并查找匹配文本在哪些文件中：</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1"><span class="token function">grep</span> <span class="token parameter variable">-l</span> <span class="token string">"text"</span> file1 file2 file3<span class="token punctuation">..</span>.
+</span></code><div onclick="copied(this)" data-code="grep -l &#x22;text&#x22; file1 file2 file3...
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+<h3 id="grep递归搜索文件"><a class="anchor" aria-hidden="true" tabindex="-1" href="#grep递归搜索文件"><span class="octicon octicon-link"></span></a>grep递归搜索文件</h3>
+<p>在多级目录中对文本进行递归搜索：</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1"><span class="token function">grep</span> <span class="token string">"text"</span> <span class="token builtin class-name">.</span> <span class="token parameter variable">-r</span> <span class="token parameter variable">-n</span>
+</span><span class="code-line line-number" line="2"><span class="token comment"># .表示当前目录。</span>
+</span></code><div onclick="copied(this)" data-code="grep &#x22;text&#x22; . -r -n
+# .表示当前目录。
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+<p>忽略匹配样式中的字符大小写：</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1"><span class="token builtin class-name">echo</span> <span class="token string">"hello world"</span> <span class="token operator">|</span> <span class="token function">grep</span> <span class="token parameter variable">-i</span> <span class="token string">"HELLO"</span>
+</span><span class="code-line line-number" line="2"><span class="token comment"># hello</span>
+</span></code><div onclick="copied(this)" data-code="echo &#x22;hello world&#x22; | grep -i &#x22;HELLO&#x22;
+# hello
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+<p>选项 <strong>-e</strong> 制动多个匹配样式：</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1"><span class="token builtin class-name">echo</span> this is a text line <span class="token operator">|</span> <span class="token function">grep</span> <span class="token parameter variable">-e</span> <span class="token string">"is"</span> <span class="token parameter variable">-e</span> <span class="token string">"line"</span> <span class="token parameter variable">-o</span>
+</span><span class="code-line line-number" line="2">is
+</span><span class="code-line line-number" line="3">is
+</span><span class="code-line line-number" line="4">line
+</span><span class="code-line line-number" line="5">
+</span><span class="code-line line-number" line="6"><span class="token comment">#也可以使用 **-f** 选项来匹配多个样式，在样式文件中逐行写出需要匹配的字符。</span>
+</span><span class="code-line line-number" line="7"><span class="token function">cat</span> patfile
+</span><span class="code-line line-number" line="8">aaa
+</span><span class="code-line line-number" line="9">bbb
+</span><span class="code-line line-number" line="10">
+</span><span class="code-line line-number" line="11"><span class="token builtin class-name">echo</span> aaa bbb ccc ddd eee <span class="token operator">|</span> <span class="token function">grep</span> <span class="token parameter variable">-f</span> patfile <span class="token parameter variable">-o</span>
+</span></code><div onclick="copied(this)" data-code="echo this is a text line | grep -e &#x22;is&#x22; -e &#x22;line&#x22; -o
+is
+is
+line
+
+#也可以使用 **-f** 选项来匹配多个样式，在样式文件中逐行写出需要匹配的字符。
+cat patfile
+aaa
+bbb
+
+echo aaa bbb ccc ddd eee | grep -f patfile -o
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+<p>在grep搜索结果中包括或者排除指定文件：</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1"><span class="token comment"># 只在目录中所有的.php和.html文件中递归搜索字符"main()"</span>
+</span><span class="code-line line-number" line="2"><span class="token function">grep</span> <span class="token string">"main()"</span> <span class="token builtin class-name">.</span> <span class="token parameter variable">-r</span> <span class="token parameter variable">--include</span> *.<span class="token punctuation">{</span>php,html<span class="token punctuation">}</span>
+</span><span class="code-line line-number" line="3">
+</span><span class="code-line line-number" line="4"><span class="token comment"># 在搜索结果中排除所有README文件</span>
+</span><span class="code-line line-number" line="5"><span class="token function">grep</span> <span class="token string">"main()"</span> <span class="token builtin class-name">.</span> <span class="token parameter variable">-r</span> <span class="token parameter variable">--exclude</span> <span class="token string">"README"</span>
+</span><span class="code-line line-number" line="6">
+</span><span class="code-line line-number" line="7"><span class="token comment"># 在搜索结果中排除filelist文件列表里的文件</span>
+</span><span class="code-line line-number" line="8"><span class="token function">grep</span> <span class="token string">"main()"</span> <span class="token builtin class-name">.</span> <span class="token parameter variable">-r</span> --exclude-from filelist
+</span><span class="code-line line-number" line="9">
+</span></code><div onclick="copied(this)" data-code="# 只在目录中所有的.php和.html文件中递归搜索字符&#x22;main()&#x22;
+grep &#x22;main()&#x22; . -r --include *.{php,html}
+
+# 在搜索结果中排除所有README文件
+grep &#x22;main()&#x22; . -r --exclude &#x22;README&#x22;
+
+# 在搜索结果中排除filelist文件列表里的文件
+grep &#x22;main()&#x22; . -r --exclude-from filelist
+
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+<p>使用0值字节后缀的grep与xargs：</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1"><span class="token comment"># 测试文件：</span>
+</span><span class="code-line line-number" line="2"><span class="token builtin class-name">echo</span> <span class="token string">"aaa"</span> <span class="token operator">></span> file1
+</span><span class="code-line line-number" line="3"><span class="token builtin class-name">echo</span> <span class="token string">"bbb"</span> <span class="token operator">></span> file2
+</span><span class="code-line line-number" line="4"><span class="token builtin class-name">echo</span> <span class="token string">"aaa"</span> <span class="token operator">></span> file3
+</span><span class="code-line line-number" line="5">
+</span><span class="code-line line-number" line="6"><span class="token function">grep</span> <span class="token string">"aaa"</span> file* <span class="token parameter variable">-lZ</span> <span class="token operator">|</span> <span class="token function">xargs</span> <span class="token parameter variable">-0</span> <span class="token function">rm</span>
+</span><span class="code-line line-number" line="7">
+</span><span class="code-line line-number" line="8"><span class="token comment"># 执行后会删除file1和file3，grep输出用-Z选项来指定以0值字节作为终结符文件名（\0），xargs -0 读取输入并用0值字节终结符分隔文件名，然后删除匹配文件，-Z通常和-l结合使用。</span>
+</span></code><div onclick="copied(this)" data-code="# 测试文件：
+echo &#x22;aaa&#x22; > file1
+echo &#x22;bbb&#x22; > file2
+echo &#x22;aaa&#x22; > file3
+
+grep &#x22;aaa&#x22; file* -lZ | xargs -0 rm
+
+# 执行后会删除file1和file3，grep输出用-Z选项来指定以0值字节作为终结符文件名（\0），xargs -0 读取输入并用0值字节终结符分隔文件名，然后删除匹配文件，-Z通常和-l结合使用。
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+<p>grep静默输出：</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1"><span class="token function">grep</span> <span class="token parameter variable">-q</span> <span class="token string">"test"</span> filename
+</span><span class="code-line line-number" line="2"><span class="token comment"># 不会输出任何信息，如果命令运行成功返回0，失败则返回非0值。一般用于条件测试。</span>
+</span></code><div onclick="copied(this)" data-code="grep -q &#x22;test&#x22; filename
+# 不会输出任何信息，如果命令运行成功返回0，失败则返回非0值。一般用于条件测试。
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+<p>打印出匹配文本之前或者之后的行：</p>
+<pre class="language-shell"><code class="language-shell code-highlight"><span class="code-line line-number" line="1"><span class="token comment"># 显示匹配某个结果之后的3行，使用 -A 选项：</span>
+</span><span class="code-line line-number" line="2"><span class="token function">seq</span> <span class="token number">10</span> <span class="token operator">|</span> <span class="token function">grep</span> <span class="token string">"5"</span> <span class="token parameter variable">-A</span> <span class="token number">3</span>
+</span><span class="code-line line-number" line="3"><span class="token number">5</span>
+</span><span class="code-line line-number" line="4"><span class="token number">6</span>
+</span><span class="code-line line-number" line="5"><span class="token number">7</span>
+</span><span class="code-line line-number" line="6"><span class="token number">8</span>
+</span><span class="code-line line-number" line="7">
+</span><span class="code-line line-number" line="8"><span class="token comment"># 显示匹配某个结果之前的3行，使用 -B 选项：</span>
+</span><span class="code-line line-number" line="9"><span class="token function">seq</span> <span class="token number">10</span> <span class="token operator">|</span> <span class="token function">grep</span> <span class="token string">"5"</span> <span class="token parameter variable">-B</span> <span class="token number">3</span>
+</span><span class="code-line line-number" line="10"><span class="token number">2</span>
+</span><span class="code-line line-number" line="11"><span class="token number">3</span>
+</span><span class="code-line line-number" line="12"><span class="token number">4</span>
+</span><span class="code-line line-number" line="13"><span class="token number">5</span>
+</span><span class="code-line line-number" line="14">
+</span><span class="code-line line-number" line="15"><span class="token comment"># 显示匹配某个结果的前三行和后三行，使用 -C 选项：</span>
+</span><span class="code-line line-number" line="16"><span class="token function">seq</span> <span class="token number">10</span> <span class="token operator">|</span> <span class="token function">grep</span> <span class="token string">"5"</span> <span class="token parameter variable">-C</span> <span class="token number">3</span>
+</span><span class="code-line line-number" line="17"><span class="token number">2</span>
+</span><span class="code-line line-number" line="18"><span class="token number">3</span>
+</span><span class="code-line line-number" line="19"><span class="token number">4</span>
+</span><span class="code-line line-number" line="20"><span class="token number">5</span>
+</span><span class="code-line line-number" line="21"><span class="token number">6</span>
+</span><span class="code-line line-number" line="22"><span class="token number">7</span>
+</span><span class="code-line line-number" line="23"><span class="token number">8</span>
+</span><span class="code-line line-number" line="24">
+</span><span class="code-line line-number" line="25"><span class="token comment"># 如果匹配结果有多个，会用“--”作为各匹配结果之间的分隔符：</span>
+</span><span class="code-line line-number" line="26"><span class="token builtin class-name">echo</span> <span class="token parameter variable">-e</span> <span class="token string">"a<span class="token entity" title="\n">\n</span>b<span class="token entity" title="\n">\n</span>c<span class="token entity" title="\n">\n</span>a<span class="token entity" title="\n">\n</span>b<span class="token entity" title="\n">\n</span>c"</span> <span class="token operator">|</span> <span class="token function">grep</span> a <span class="token parameter variable">-A</span> <span class="token number">1</span>
+</span><span class="code-line line-number" line="27">a
+</span><span class="code-line line-number" line="28">b
+</span><span class="code-line line-number" line="29">--
+</span><span class="code-line line-number" line="30">a
+</span><span class="code-line line-number" line="31">b
+</span></code><div onclick="copied(this)" data-code="# 显示匹配某个结果之后的3行，使用 -A 选项：
+seq 10 | grep &#x22;5&#x22; -A 3
+5
+6
+7
+8
+
+# 显示匹配某个结果之前的3行，使用 -B 选项：
+seq 10 | grep &#x22;5&#x22; -B 3
+2
+3
+4
+5
+
+# 显示匹配某个结果的前三行和后三行，使用 -C 选项：
+seq 10 | grep &#x22;5&#x22; -C 3
+2
+3
+4
+5
+6
+7
+8
+
+# 如果匹配结果有多个，会用“--”作为各匹配结果之间的分隔符：
+echo -e &#x22;a\nb\nc\na\nb\nc&#x22; | grep a -A 1
+a
+b
+--
+a
+b
+" class="copied"><svg class="octicon-copy" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path></svg><svg class="octicon-check" aria-hidden="true" viewBox="0 0 16 16" fill="currentColor" height="12" width="12"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg></div></pre>
+<style>markdown-style pre .copied {
+  display: flex;
+  position: absolute;
+  cursor: pointer;
+  color: #a5afbb;
+  top: 6px;
+  right: 6px;
+  border-radius: 5px;
+  background: #82828226;
+  padding: 6px;
+  font-size: 12px;
+  transition: all .3s;
+}
+markdown-style pre .copied:not(.active) {
+  visibility: hidden;
+}
+markdown-style pre:hover .copied {
+  visibility: visible;
+}
+markdown-style pre:hover .copied:hover {
+  background: #4caf50;
+  color: #fff;
+}
+markdown-style pre:hover .copied:active,
+markdown-style pre .copied.active {
+  background: #2e9b33;
+  color: #fff;
+}
+markdown-style pre .copied .octicon-copy {
+  display: block;
+}
+markdown-style pre .copied .octicon-check {
+  display: none;
+}
+markdown-style pre .active .octicon-copy {
+  display: none;
+}
+markdown-style pre .active .octicon-check {
+  display: block;
+}</style><script>/*! @uiw/copy-to-clipboard v1.0.12 | MIT (c) 2021 Kenny Wang | https://github.com/uiwjs/copy-to-clipboard.git */
+!function(e,t){"object"==typeof exports&&"undefined"!=typeof module?module.exports=t():"function"==typeof define&&define.amd?define(t):(e="undefined"!=typeof globalThis?globalThis:e||self).copyTextToClipboard=t()}(this,(function(){"use strict";return function(e,t){const o=document.createElement("textarea");o.value=e,o.setAttribute("readonly",""),o.style={position:"absolute",left:"-9999px"},document.body.appendChild(o);const n=document.getSelection().rangeCount>0&&document.getSelection().getRangeAt(0);o.select();let c=!1;try{c=!!document.execCommand("copy")}catch(e){c=!1}document.body.removeChild(o),n&&document.getSelection&&(document.getSelection().removeAllRanges(),document.getSelection().addRange(n)),t&&t(c)}}));
+
+function copied(target, str) {
+  target.classList.add('active');
+  copyTextToClipboard(target.dataset.code, function() {
+    setTimeout(() => {
+      target.classList.remove('active');
+    }, 2000);
+  });
+}</script></markdown-style>
+
+</div>
+<div class="footer ">
+  <!-- <a target="_blank" href="">添加命令</a> | -->
+  <a href="../hot.html">命令列表</a> |
+  <!-- <a href="" target="_blank">打赏捐赠</a> | -->
+  <a href="https://github.com/piwind/linux-command" target="_blank">Github</a> |
+  <a href="https://forum.piwind.com/" target="_blank">Piwind 社区</a>
+  <br />
+  收藏本站请使用 Ctrl+D 或者 Command+d
+  <br /> 共搜集到
+  <span id="commands_info">
+    611
+  </span> 个Linux命令，Version: 2025-06-08
+</div>
+<script type="text/javascript" src="../js/dt.js?v=1749366244631"></script>
+<script type="text/javascript" src="../js/index.js?v=1749366244631"></script>
+</body>
+</html>
